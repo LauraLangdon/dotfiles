@@ -70,7 +70,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git z python sublime vscode github history docker golang zsh-syntax-highlighting)
+plugins=(git z python poetry sublime vscode github history docker golang zsh-syntax-highlighting)
 
 
 source $ZSH/oh-my-zsh.sh
@@ -99,6 +99,7 @@ source ~/.bash_profile
 # eval "$(pyenv init -)"
 
 # PATH addendums
+export PATH="$HOME/.local/bin:$PATH"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -113,5 +114,8 @@ source ~/.bash_profile
 alias s="/Users/lauralangdon/Suborbital"
 alias -g z="~/.zshrc"
 alias d="/Users/lauralangdon/Suborbital/docs/website"
+alias gm="git checkout main"
+alias gp="git checkout -"
+alias gs="git status"
 
 alias config='/usr/bin/git --git-dir=/Users/lauralangdon/.cfg/ --work-tree=/Users/lauralangdon'
