@@ -1158,7 +1158,7 @@
 				<real>0.0039215686274509803</real>
 			</dict>
 			<key>Minimum Contrast</key>
-			<real>0.0</real>
+			<real>0.53037109375000002</real>
 			<key>Mouse Reporting</key>
 			<true/>
 			<key>Name</key>
@@ -1363,13 +1363,13 @@
 				<key>Alpha Component</key>
 				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.9843137264251709</real>
+				<real>0.98039215686274506</real>
 				<key>Color Space</key>
 				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.12549020349979401</real>
+				<real>0.396078431372549</real>
 				<key>Red Component</key>
-				<real>0.7921568751335144</real>
+				<real>0.87058823529411766</real>
 			</dict>
 			<key>Ansi 14 Color</key>
 			<dict>
@@ -1441,13 +1441,13 @@
 				<key>Alpha Component</key>
 				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.9843137264251709</real>
+				<real>0.98039215686274506</real>
 				<key>Color Space</key>
 				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.12549020349979401</real>
+				<real>0.396078431372549</real>
 				<key>Red Component</key>
-				<real>0.7921568751335144</real>
+				<real>0.87058823529411766</real>
 			</dict>
 			<key>Ansi 6 Color</key>
 			<dict>
@@ -1467,13 +1467,13 @@
 				<key>Alpha Component</key>
 				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.98039215803146362</real>
+				<real>0.74901960784313726</real>
 				<key>Color Space</key>
 				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.86274510622024536</real>
+				<real>0.61568627450980395</real>
 				<key>Red Component</key>
-				<real>0.9686274528503418</real>
+				<real>0.95294117647058818</real>
 			</dict>
 			<key>Ansi 8 Color</key>
 			<dict>
