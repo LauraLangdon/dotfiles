@@ -125,7 +125,7 @@ alias d="/Users/lauralangdon/Suborbital/docs/website"
 alias config='/usr/bin/git --git-dir=/Users/lauralangdon/.cfg/ --work-tree=/Users/lauralangdon'
 alias gs='git status'
 alias gm='git checkout main'
-alias gp="git checkout -'
+alias gp='git checkout -'
 
 source ~/.dotfiles/Zsh/Oh-My-Zsh/custom/themes/powerlevel10k/powerlevel10k.zsh-theme
 
