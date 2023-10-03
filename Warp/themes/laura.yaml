@@ -10,7 +10,7 @@ terminal_colors: # Ansi escape colors.
     green: '#00cc99'
     magenta: '#bf83fb'
     red: '#f383af'
-    white: '#f7dcfa'
+    white: '#f8b9d2'
     yellow: '#EB4F9F'
   normal:
     black: '#0a0719'
@@ -19,5 +19,5 @@ terminal_colors: # Ansi escape colors.
     green: '#00cc99'
     magenta: '#bf83fb'
     red: '#f383af'
-    white: '#f7dcfa'
+    white: '#f8b9d2'
     yellow: '#ffc466'
