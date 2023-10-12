@@ -1,4 +1,4 @@
 # dotfiles
 Eh. Dotfiles.
 
-Forked with gratitude from https://github.com/LauraLangdon/dotfiles-fork
+Forked with gratitude from https://github.com/sheharyarn/dotfiles
