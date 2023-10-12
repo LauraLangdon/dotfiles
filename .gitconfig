@@ -1,0 +1,32 @@
+[user]
+	name = Laura Langdon
+	email = 48335772+LauraLangdon@users.noreply.github.com
+	signingkey = 4AFB4DBF62D3CB66D1461F89C0904024CA5667E1
+[core]
+	autocrlf = input
+	excludesfile = /Users/lauralangdon/.gitignore_global
+	pager = diff-so-fancy | less --tabs=4 -RFX
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[credential]
+	helper = osxkeychain
+	helper = 
+	helper = /usr/local/share/gcm-core/git-credential-manager
+[commit]
+	gpgsign = true
+[alias]
+	logs = log --show-signature
+	cis = commit -S
+[gpg]
+	program = /usr/local/MacGPG2/bin/gpg2
+[credential "https://dev.azure.com"]
+	useHttpPath = true
+[safe]
+	directory = /workspace
+[init]
+	defaultBranch = main
+[push]
+	autoSetupRemote = true
