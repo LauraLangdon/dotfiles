@@ -1,3 +1,5 @@
+# Fig pre block. Keep at the top of this file.
+[[ -f "$HOME/.fig/shell/zprofile.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zprofile.pre.zsh"
 # Setting PATH for Python 3.8
 # The original version is saved in .zprofile.pysave
 PATH="/Library/Frameworks/Python.framework/Versions/3.8/bin:${PATH}"
@@ -18,3 +20,6 @@ export PATH="/Applications/Sublime Text.app/Contents/SharedSupport/bin:$PATH"
 # source /usr/local/bin/virtualenvwrapper.sh
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# Fig post block. Keep at the bottom of this file.
+[[ -f "$HOME/.fig/shell/zprofile.post.zsh" ]] && builtin source "$HOME/.fig/shell/zprofile.post.zsh"
