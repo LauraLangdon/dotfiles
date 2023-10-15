@@ -1,5 +1,5 @@
 accent: '#ffb3c6' # Accent color for UI elements
-background: '#fff8ff' # Terminal background color
+background: '#fffcff' # Terminal background color
 details: lighter # Whether the theme is lighter or darker.
 foreground: '#494ce9' # The foreground color.
 terminal_colors: # Ansi escape colors.
