@@ -8,8 +8,8 @@
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=$HOME/.dotfiles/Zsh/Oh-My-Zsh
-export ZSH_CUSTOM="~/.dotfiles/Zsh/Oh-My-Zsh/custom"
+export ZSH=$HOME/Repos/dotfiles/Zsh/Oh-My-Zsh
+export ZSH_CUSTOM="~/Repos/dotfiles/Zsh/Oh-My-Zsh/custom"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -122,7 +122,7 @@ alias gs='git status'
 alias gm='git checkout main'
 alias gp='git checkout -'
 alias ls=exa
-source ~/.dotfiles/Zsh/Oh-My-Zsh/custom/themes/powerlevel10k/powerlevel10k.zsh-theme
+source ~/Repos/dotfiles/Zsh/Oh-My-Zsh/custom/themes/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
