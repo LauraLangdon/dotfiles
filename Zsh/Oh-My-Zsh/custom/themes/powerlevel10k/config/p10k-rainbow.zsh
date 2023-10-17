@@ -1,4 +1,4 @@
- Config for Powerlevel10k with powerline prompt style with colorful background.
+# Config for Powerlevel10k with powerline prompt style with colorful background.
 # Type `p10k configure` to generate your own config based on it.
 #
 # Tip: Looking for a nice color? Here's a one-liner to print colormap.
@@ -39,66 +39,66 @@
   # last prompt line gets hidden if it would overlap with left prompt.
   typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
     # =========================[ Line #1 ]=========================
-    #status                #  # exit code of the last command
-    #command_execution_time#  # duration of the last command
-    #background_jobs       #  # presence of background jobs
-    #direnv                #  # direnv status (https://direnv.net/)
-    #asdf                  #  # asdf version manager (https://github.com/asdf-vm/asdf)
-    #virtualenv            #  # python virtual environment (https://docs.python.org/3/library/venv.html)
-    #anaconda              #  # conda environment (https://conda.io/)
-    #pyenv                 #  # python environment (https://github.com/pyenv/pyenv)
-    #goenv                 #  # go environment (https://github.com/syndbg/goenv)
-    #nodenv                #  # node.js version from nodenv (https://github.com/nodenv/nodenv)
-    #nvm                   #  # node.js version from nvm (https://github.com/nvm-sh/nvm)
-    #nodeenv               #  # node.js environment (https://github.com/ekalinin/nodeenv)
-    # node_version        #  # node.js version
-    # go_version          #  # go version (https://golang.org)
-    # rust_version        #  # rustc version (https://www.rust-lang.org)
-    # dotnet_version      #  # .NET version (https://dotnet.microsoft.com)
-    # php_version         #  # php version (https://www.php.net/)
-    # laravel_version     #  # laravel php framework version (https://laravel.com/)
-    # java_version        #  # java version (https://www.java.com/)
-    # package             #  # name@version from package.json (https://docs.npmjs.com/files/package.json)
-    rbenv                 #  # ruby version from rbenv (https://github.com/rbenv/rbenv)
-    rvm                   #  # ruby version from rvm (https://rvm.io)
-    fvm                   #  # flutter version management (https://github.com/leoafarias/fvm)
-    luaenv                #  # lua version from luaenv (https://github.com/cehoffman/luaenv)
-    jenv                  #  # java version from jenv (https://github.com/jenv/jenv)
-    plenv                 #  # perl version from plenv (https://github.com/tokuhirom/plenv)
-    perlbrew              #  # perl version from perlbrew (https://github.com/gugod/App-perlbrew)
-    phpenv                #  # php version from phpenv (https://github.com/phpenv/phpenv)
-    scalaenv              #  # scala version from scalaenv (https://github.com/scalaenv/scalaenv)
-    haskell_stack         #  # haskell version from stack (https://haskellstack.org/)
-    kubecontext           #  # current kubernetes context (https://kubernetes.io/)
-    terraform             #  # terraform workspace (https://www.terraform.io)
-    # terraform_version   #  # terraform version (https://www.terraform.io)
-    aws                   #  # aws profile (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html)
-    aws_eb_env            #  # aws elastic beanstalk environment (https://aws.amazon.com/elasticbeanstalk/)
-    azure                 #  # azure account name (https://docs.microsoft.com/en-us/cli/azure)
-    gcloud                #  # google cloud cli account and project (https://cloud.google.com/)
-    google_app_cred       #  # google application credentials (https://cloud.google.com/docs/authentication/production)
-    toolbox               #  # toolbox name (https://github.com/containers/toolbox)
-    context               #  # user@hostname
-    nordvpn               #  # nordvpn connection status, linux only (https://nordvpn.com/)
-    ranger                #  # ranger shell (https://github.com/ranger/ranger)
-    nnn                   #  # nnn shell (https://github.com/jarun/nnn)
-    lf                    #  # lf shell (https://github.com/gokcehan/lf)
-    xplr                  #  # xplr shell (https://github.com/sayanarijit/xplr)
-    vim_shell             #  # vim shell indicator (:sh)
-    midnight_commander    #  # midnight commander shell (https://midnight-commander.org/)
-    nix_shell             #  # nix shell (https://nixos.org/nixos/nix-pills/developing-with-nix-shell.html)
-    chezmoi_shell         #  # chezmoi shell (https://www.chezmoi.io/)
-    # vi_mode             #  # vi mode (you don't need this if you've enabled prompt_char)
-    # vpn_ip              #  # virtual private network indicator
-    # load                #  # CPU load
-    # disk_usage          #  # disk usage
-    # ram                 #  # free RAM
-    # swap                #  # used swap
-    todo                  #  # todo items (https://github.com/todotxt/todo.txt-cli)
-    timewarrior           #  # timewarrior tracking status (https://timewarrior.net/)
-    taskwarrior           #  # taskwarrior task count (https://taskwarrior.org/)
-    per_directory_history #  # Oh My Zsh per-directory-history local/global indicator
-    # cpu_arch            #  # CPU architecture
+    status                  # exit code of the last command
+    command_execution_time  # duration of the last command
+    background_jobs         # presence of background jobs
+    direnv                  # direnv status (https://direnv.net/)
+    asdf                    # asdf version manager (https://github.com/asdf-vm/asdf)
+    virtualenv              # python virtual environment (https://docs.python.org/3/library/venv.html)
+    anaconda                # conda environment (https://conda.io/)
+    pyenv                   # python environment (https://github.com/pyenv/pyenv)
+    goenv                   # go environment (https://github.com/syndbg/goenv)
+    nodenv                  # node.js version from nodenv (https://github.com/nodenv/nodenv)
+    nvm                     # node.js version from nvm (https://github.com/nvm-sh/nvm)
+    nodeenv                 # node.js environment (https://github.com/ekalinin/nodeenv)
+    # node_version          # node.js version
+    # go_version            # go version (https://golang.org)
+    # rust_version          # rustc version (https://www.rust-lang.org)
+    # dotnet_version        # .NET version (https://dotnet.microsoft.com)
+    # php_version           # php version (https://www.php.net/)
+    # laravel_version       # laravel php framework version (https://laravel.com/)
+    # java_version          # java version (https://www.java.com/)
+    # package               # name@version from package.json (https://docs.npmjs.com/files/package.json)
+    rbenv                   # ruby version from rbenv (https://github.com/rbenv/rbenv)
+    rvm                     # ruby version from rvm (https://rvm.io)
+    fvm                     # flutter version management (https://github.com/leoafarias/fvm)
+    luaenv                  # lua version from luaenv (https://github.com/cehoffman/luaenv)
+    jenv                    # java version from jenv (https://github.com/jenv/jenv)
+    plenv                   # perl version from plenv (https://github.com/tokuhirom/plenv)
+    perlbrew                # perl version from perlbrew (https://github.com/gugod/App-perlbrew)
+    phpenv                  # php version from phpenv (https://github.com/phpenv/phpenv)
+    scalaenv                # scala version from scalaenv (https://github.com/scalaenv/scalaenv)
+    haskell_stack           # haskell version from stack (https://haskellstack.org/)
+    kubecontext             # current kubernetes context (https://kubernetes.io/)
+    terraform               # terraform workspace (https://www.terraform.io)
+    # terraform_version     # terraform version (https://www.terraform.io)
+    aws                     # aws profile (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html)
+    aws_eb_env              # aws elastic beanstalk environment (https://aws.amazon.com/elasticbeanstalk/)
+    azure                   # azure account name (https://docs.microsoft.com/en-us/cli/azure)
+    gcloud                  # google cloud cli account and project (https://cloud.google.com/)
+    google_app_cred         # google application credentials (https://cloud.google.com/docs/authentication/production)
+    toolbox                 # toolbox name (https://github.com/containers/toolbox)
+    context                 # user@hostname
+    nordvpn                 # nordvpn connection status, linux only (https://nordvpn.com/)
+    ranger                  # ranger shell (https://github.com/ranger/ranger)
+    nnn                     # nnn shell (https://github.com/jarun/nnn)
+    lf                      # lf shell (https://github.com/gokcehan/lf)
+    xplr                    # xplr shell (https://github.com/sayanarijit/xplr)
+    vim_shell               # vim shell indicator (:sh)
+    midnight_commander      # midnight commander shell (https://midnight-commander.org/)
+    nix_shell               # nix shell (https://nixos.org/nixos/nix-pills/developing-with-nix-shell.html)
+    chezmoi_shell           # chezmoi shell (https://www.chezmoi.io/)
+    # vi_mode               # vi mode (you don't need this if you've enabled prompt_char)
+    # vpn_ip                # virtual private network indicator
+    # load                  # CPU load
+    # disk_usage            # disk usage
+    # ram                   # free RAM
+    # swap                  # used swap
+    todo                    # todo items (https://github.com/todotxt/todo.txt-cli)
+    timewarrior             # timewarrior tracking status (https://timewarrior.net/)
+    taskwarrior             # taskwarrior task count (https://taskwarrior.org/)
+    per_directory_history   # Oh My Zsh per-directory-history local/global indicator
+    # cpu_arch              # CPU architecture
     # time                  # current time
     # =========================[ Line #2 ]=========================
     newline
@@ -213,19 +213,19 @@
 
   ##################################[ dir: current directory ]##################################
   # Current directory background color.
-  typeset -g POWERLEVEL9K_DIR_BACKGROUND=147
+  typeset -g POWERLEVEL9K_DIR_BACKGROUND=4
   # Default current directory foreground color.
-  typeset -g POWERLEVEL9K_DIR_FOREGROUND=0
+  typeset -g POWERLEVEL9K_DIR_FOREGROUND=254
   # If directory is too long, shorten some of its segments to the shortest possible unique
   # prefix. The shortened directory can be tab-completed to the original.
   typeset -g POWERLEVEL9K_SHORTEN_STRATEGY=truncate_to_unique
   # Replace removed segment suffixes with this symbol.
   typeset -g POWERLEVEL9K_SHORTEN_DELIMITER=
   # Color of the shortened directory segments.
-  typeset -g POWERLEVEL9K_DIR_SHORTENED_FOREGROUND=0
+  typeset -g POWERLEVEL9K_DIR_SHORTENED_FOREGROUND=250
   # Color of the anchor directory segments. Anchor segments are never shortened. The first
   # segment is always an anchor.
-  typeset -g POWERLEVEL9K_DIR_ANCHOR_FOREGROUND=0
+  typeset -g POWERLEVEL9K_DIR_ANCHOR_FOREGROUND=255
   # Display anchor directory segments in bold.
   typeset -g POWERLEVEL9K_DIR_ANCHOR_BOLD=true
   # Don't shorten directories that contain any of these files. They are anchors.
@@ -352,10 +352,10 @@
 
   #####################################[ vcs: git status ]######################################
   # Version control background colors.
-  typeset -g POWERLEVEL9K_VCS_CLEAN_BACKGROUND=044
+  typeset -g POWERLEVEL9K_VCS_CLEAN_BACKGROUND=2
   typeset -g POWERLEVEL9K_VCS_MODIFIED_BACKGROUND=3
-  typeset -g POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND=044
-  typeset -g POWERLEVEL9K_VCS_CONFLICTED_BACKGROUND=205
+  typeset -g POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND=2
+  typeset -g POWERLEVEL9K_VCS_CONFLICTED_BACKGROUND=3
   typeset -g POWERLEVEL9K_VCS_LOADING_BACKGROUND=8
 
   # Branch icon. Set this parameter to '\UE0A0 ' for the popular Powerline branch icon.
@@ -548,7 +548,7 @@
   typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_BACKGROUND=3
   # Show duration of the last command if takes at least this many seconds.
   typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_THRESHOLD=3
-  # Show this many fractional digits. Zero means round to seconds
+  # Show this many fractional digits. Zero means round to seconds.
   typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_PRECISION=0
   # Duration format: 1d 2h 3m 4s.
   typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_FORMAT='d h m s'
