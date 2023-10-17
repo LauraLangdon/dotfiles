@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =4
+let g:netrw_dirhist_4='/Users/lauralangdon/.warp/themes'
+let g:netrw_dirhist_3='/Users/lauralangdon'
+let g:netrw_dirhist_2='/Users/lauralangdon/.iterm2'
+let g:netrw_dirhist_1='/Users/lauralangdon'
+let g:netrw_dirhist_0='/Users/lauralangdon/.nvm'
+let g:netrw_dirhist_9='/Users/lauralangdon'
+let g:netrw_dirhist_8='/Users/lauralangdon/.config/nvim/lua/laura'
+let g:netrw_dirhist_7='/Users/lauralangdon/.config/nvim/lua'
+let g:netrw_dirhist_6='/Users/lauralangdon/.config/nvim'
+let g:netrw_dirhist_5='/Users/lauralangdon/.config/nvim/lua'
