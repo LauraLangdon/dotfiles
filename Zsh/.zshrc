@@ -79,7 +79,7 @@ export ZSH_CUSTOM="~/Repos/dotfiles/Zsh/Oh-My-Zsh/custom"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git z python sublime vscode github history docker golang) 
 
-
+export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
