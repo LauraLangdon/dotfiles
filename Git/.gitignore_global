@@ -1,2 +1,6 @@
 .DS_Store
 .idea
+.vscode
+*.swp
+
+../Zsh/Oh-My-Zsh/cache/
