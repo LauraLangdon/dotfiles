@@ -5,53 +5,52 @@ local M = {}
 
 M.base_30 = {
   white = "#963896",
-  darker_black = "#f3f5f7",
+  darker_black = "#f7eef4", -- left sidebar
   black = "#fffcff", --  nvim bg
-  black2 = "#edeff1",
-  one_bg = "#eaecee",
-  one_bg2 = "#e1e3e5", -- StatusBar (filename)
-  one_bg3 = "#d7d9db",
-  grey = "#c7c9cb", -- Line numbers )
-  grey_fg = "#bcbec0",
-  grey_fg2 = "#b1b3b5",
-  light_grey = "#a6a8aa",
-  red = "#e916a6", -- StatusBar (username)
-  baby_pink = "#ea4aaa",
-  pink = "#ffb3c6",
-  line = "#eaecee", -- for lines like vertsplit
-  green = "#18654B",
-  vibrant_green = "#28a745",
-  nord_blue = "#99a8ff", -- Mode indicator
-  blue = "#6a90ef",
-  yellow = "#dbab09",
+  black2 = "#fff3f9",
+  one_bg = "#eedde9",
+  one_bg2 = "#fff3f9", -- StatusBar (filename)
+  one_bg3 = "#ddbbd2",
+  grey = "#b3b3cc", -- Line numbers )
+  grey_fg = "#a3a3c2",
+  grey_fg2 = "#ddbbd2",
+  light_grey = "#00a5b3",
+  red = "#e91686", -- StatusBar (username)
+  baby_pink = "#ffb3c6",
+  pink = "#f96cb7",
+  line = "#999cff", -- for lines like vertsplit
+  green = "#963896",
+  vibrant_green = "#00aa64",
+  nord_blue = "#999cff", -- Mode indicator
+  blue = "#666bff",
+  yellow = "#f9c006",
   sun = "#f9c513",
-  purple = "#8263EB",
+  purple = "#cc00ff",
   dark_purple = "#5a32a3",
   teal = "#22839b",
-  orange = "#d15704",
-  cyan = "#00b3b3",
-  statusline_bg = "#edeff1",
-  lightbg = "#e1e3e5",
-  pmenu_bg = "#8263EB",
-  folder_bg = "#99a8ff",
+  orange = "#ff9900",
+  cyan = "#00a5b3",
+  statusline_bg = "#ddbbd2",
+  pmenu_bg = "#999cff",
+  folder_bg = "#cd1885",
 }
 
 M.base_16 = {
-  base00 = "#fffcff", -- Default bg
-  base01 = "#edeff1", -- Lighter bg (status bar, line number, folding mks)
-  base02 = "#e1e3e5", -- Selection bg
-  base03 = "#d7d9db", -- Comments, invisibles, line hl
-  base04 = "#c7c9cb", -- Dark fg (status bars)
-  base05 = "#963896", -- Default fg (caret, delimiters, Operators)
-  base06 = "#2e3338", -- Light fg (not often used)
-  base07 = "#24292e", -- Light bg (not often used)
-  base08 = "#5a32a3", -- Variables, XML Tags, Markup Link Text, Markup Lists, Diff Deleted
-  base09 = "#b93a86", -- Integers, Boolean, Constants, XML Attributes, Markup Link Url
-  base0A = "#b08800", -- Classes, Markup Bold, Search Text Background
-  base0B = "#4c2889", -- Strings, Inherited Class, Markup Code, Diff Inserted
+  base00 = M.base_30.black, -- Default bg
+  base01 = "#ccceff", -- Lighter bg (status bar, line number, folding mks)
+  base02 = "#e6e6ff", -- Selection bg
+  base03 = M.base_30.blue, -- Comments, invisibles, line hl
+  base04 = M.base_30.dark_purple, -- Dark fg (status bars)
+  base05 = "#5d225d", -- Default fg (caret, delimiters, Operators)
+  base06 = "#5c5c8a", -- Light fg (not often used)
+  base07 = "#eedde9", -- Light bg (not often used)
+  base08 = M.base_30.vibrant_green, -- Variables, XML Tags, Markup Link Text, Markup Lists, Diff Deleted
+  base09 = "#ff9900", -- Integers, Boolean, Constants, XML Attributes, Markup Link Url
+  base0A = M.base_30.pink, -- Classes, Markup Bold, Search Text Backgroun
+  base0B = M.base_30.blue, -- Strings, Inherited Class, Markup Code, Diff Inserted
   base0C = "#8263EB", -- Support, regex, escape chars
-  base0D = "#005cc5", -- Function, methods, headings
-  base0E = "#DE2C2E", -- Keywords
+  base0D = M.base_30.cyan, -- Function, methods, headings
+  base0E = M.base_30.purple, -- Keywords
   base0F = "#044289", -- Deprecated, open/close embedded tags
 }
 
@@ -63,7 +62,7 @@ M.polish_hl = {
   },
 
   ["@field.key"] = {
-    fg = M.base_30.white,
+    fg = M.base_30.darker_black,
   },
 
   Constant = {
@@ -79,7 +78,7 @@ M.polish_hl = {
   },
 
   ["@operator"] = {
-    fg = M.base_30.orange
+    fg = M.base_30.red,
   }
 }
 
