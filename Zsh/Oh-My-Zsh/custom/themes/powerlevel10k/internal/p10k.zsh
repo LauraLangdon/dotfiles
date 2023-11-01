@@ -3186,68 +3186,55 @@ instant_prompt_root_indicator() { prompt_root_indicator; }
 ################################################################
 # Segment to display Rust version number
 prompt_rust_version() {
-  unset P9K_RUST_VERSION
-  if (( _POWERLEVEL9K_RUST_VERSION_PROJECT_ONLY )); then
-    _p9k_upglob Cargo.toml -. && return
-  fi
-  local rustc=$commands[rustc] toolchain deps=()
-  if (( $+commands[ldd] )); then
-    if ! _p9k_cache_stat_get $0_so $rustc; then
-      local line so
-      for line in "${(@f)$(ldd $rustc 2>/dev/null)}"; do
-        [[ $line == (#b)[[:space:]]#librustc_driver[^[:space:]]#.so' => '(*)' (0x'[[:xdigit:]]#')' ]] || continue
-        so=$match[1]
-        break
-      done
-      _p9k_cache_stat_set "$so"
-    fi
-    deps+=$_p9k__cache_val[1]
-  fi
-  if (( $+commands[rustup] )); then
-    local rustup=$commands[rustup]
-    local rustup_home=${RUSTUP_HOME:-~/.rustup}
-    local cfg=($rustup_home/settings.toml(.N))
-    deps+=($cfg $rustup_home/update-hashes/*(.N))
-    if [[ -z ${toolchain::=$RUSTUP_TOOLCHAIN} ]]; then
-      if ! _p9k_cache_stat_get $0_overrides $rustup $cfg; then
-        local lines=(${(f)"$(rustup override list 2>/dev/null)"})
-        if [[ $lines[1] == "no overrides" ]]; then
-          _p9k_cache_stat_set
-        else
-          local MATCH
-          local keys=(${(@)${lines%%[[:space:]]#[^[:space:]]#}/(#m)*/${(b)MATCH}/})
-          local vals=(${(@)lines/(#m)*/$MATCH[(I)/] ${MATCH##*[[:space:]]}})
-          _p9k_cache_stat_set ${keys:^vals}
-        fi
-      fi
-      local -A overrides=($_p9k__cache_val)
-      _p9k_upglob rust-toolchain -.
-      local dir=$_p9k__parent_dirs[$?]
-      local -i n m=${dir[(I)/]}
-      local pair
-      for pair in ${overrides[(K)$_p9k__cwd/]}; do
-        n=${pair%% *}
-        (( n <= m )) && continue
-        m=n
-        toolchain=${pair#* }
-      done
-      if [[ -z $toolchain && -n $dir ]]; then
-        _p9k_read_word $dir/rust-toolchain
-        toolchain=$_p9k__ret
-      fi
-    fi
-  fi
-  if ! _p9k_cache_stat_get $0_v$toolchain $rustc $deps; then
-    _p9k_cache_stat_set "$($rustc --version 2>/dev/null)"
-  fi
-  local v=${${_p9k__cache_val[1]#rustc }%% *}
-  [[ -n $v ]] || return
-  typeset -g P9K_RUST_VERSION=$_p9k__cache_val[1]
-  _p9k_prompt_segment "$0" "darkorange" "$_p9k_color1" 'RUST_ICON' 0 '' "${v//\%/%%}"
+  local -i len=$#_p9k__prompt _p9k__has_upglob
+  _p9k_prompt_segment $0 darkorange $_p9k_color1 RUST_ICON 1 '$P9K_RUST_VERSION' '${P9K_RUST_VERSION//\%/%%}'
+  (( _p9k__has_upglob )) || typeset -g "_p9k__segment_val_${_p9k__prompt_side}[_p9k__segment_index]"=$_p9k__prompt[len+1,-1]
 }
 
-_p9k_prompt_rust_version_init() {
+function _p9k_prompt_rust_version_init() {
+  _p9k__async_segments_compute+='_p9k_rust_version_prefetch'
   typeset -g "_p9k__segment_cond_${_p9k__prompt_side}[_p9k__segment_index]"='$commands[rustc]'
+}
+
+_p9k_rust_version_prefetch() {
+  local rustc=$commands[rustc]
+  if [[ -z $rustc ]] ||
+     { (( _POWERLEVEL9K_RUST_VERSION_PROJECT_ONLY )) && _p9k_upglob Cargo.toml -. }; then
+    unset P9K_RUST_VERSION
+    return
+  fi
+  _p9k_worker_invoke rust_version \
+    "_p9k_prompt_rust_version_compute ${(q)P9K_RUST_VERSION} ${(q)rustc} ${(q)_p9k__cwd_a}"
+}
+
+_p9k_prompt_rust_version_compute() {
+  _p9k_worker_async                                          \
+    "_p9k_prompt_rust_version_async ${(q)1} ${(q)2} ${(q)3}" \
+    _p9k_prompt_rust_version_sync
+}
+
+_p9k_prompt_rust_version_async() {
+  typeset -g P9K_RUST_VERSION=$1
+  local rustc=$2 cwd=$3 v
+  if pushd -q -- $cwd; then
+    {
+      v=${${"$($rustc --version)"#rustc }%% *} || v=
+    } always {
+      popd -q
+    }
+  fi
+
+  [[ $v != $P9K_RUST_VERSION ]] || return
+  typeset -g P9K_RUST_VERSION=$v
+  _p9k_print_params P9K_RUST_VERSION
+  echo -E - 'reset=1'
+}
+
+_p9k_prompt_rust_version_sync() {
+  if [[ -n $REPLY ]]; then
+    eval $REPLY
+    _p9k_worker_reply $REPLY
+  fi
 }
 
 # RSpec test ratio
@@ -3878,9 +3865,11 @@ function _p9k_vcs_icon() {
     *bitbucket*)                       _p9k__ret=VCS_GIT_BITBUCKET_ICON;;
     *stash*)                           _p9k__ret=VCS_GIT_BITBUCKET_ICON;;
     *gitlab*)                          _p9k__ret=VCS_GIT_GITLAB_ICON;;
+    # Azure DevOps: visualstudio.com is the old hostname, dev.azure.com is the new one.
     # https://learn.microsoft.com/en-us/azure/devops/repos/git/use-ssh-keys-to-authenticate
-    (|*@)vs-ssh.visualstudio.com(|:*)) _p9k__ret=VCS_GIT_AZURE_ICON;;  # old
-    (|*@)ssh.dev.azure.com(|:*))       _p9k__ret=VCS_GIT_AZURE_ICON;;  # new
+    (|*@|*.)(visualstudio.com|dev.azure.com)(|:*|/*))
+      _p9k__ret=VCS_GIT_AZURE_ICON
+    ;;  # old
     *)                                 _p9k__ret=VCS_GIT_ICON;;
   esac
 }
@@ -5034,12 +5023,16 @@ _p9k_prompt_terraform_init() {
 }
 
 function prompt_terraform_version() {
-  _p9k_cached_cmd 0 '' terraform --version || return
-  local v=${_p9k__ret#Terraform v}
-  (( $#v < $#_p9k__ret )) || return
-  v=${v%%$'\n'*}
+  local v cfg terraform=${commands[terraform]}
+  _p9k_upglob .terraform-version -. || cfg=$_p9k__parent_dirs[$?]/.terraform-version
+  if _p9k_cache_stat_get $0.$TFENV_TERRAFORM_VERSION $terraform $cfg; then
+    v=$_p9k__cache_val[1]
+  else
+    v=${${"$(terraform --version 2>/dev/null)"#Terraform v}%%$'\n'*} || v=
+    _p9k_cache_stat_set "$v"
+  fi
   [[ -n $v ]] || return
-  _p9k_prompt_segment $0 $_p9k_color1 blue TERRAFORM_ICON 0 '' $v
+  _p9k_prompt_segment $0 $_p9k_color1 blue TERRAFORM_ICON 0 '' ${v//\%/%%}
 }
 
 _p9k_prompt_terraform_version_init() {
@@ -9405,7 +9398,7 @@ if [[ $__p9k_dump_file != $__p9k_instant_prompt_dump_file && -n $__p9k_instant_p
   zf_rm -f -- $__p9k_instant_prompt_dump_file{,.zwc} 2>/dev/null
 fi
 
-typeset -g P9K_VERSION=1.19.8
+typeset -g P9K_VERSION=1.19.10
 unset VSCODE_SHELL_INTEGRATION
 
 _p9k_init_ssh
