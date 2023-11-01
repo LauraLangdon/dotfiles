@@ -1,6 +1,3 @@
--- credits to original theme for existing https://github.com/primer/github-vscode-theme
--- This is a modified version of it
-
 local M = {}
 
 M.base_30 = {
