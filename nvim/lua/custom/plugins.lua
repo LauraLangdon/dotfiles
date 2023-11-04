@@ -1,5 +1,13 @@
 local plugins = {
   {
+    "kdheepak/lazygit.nvim",
+    -- optional for floating window border decoration
+      dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+  },
+
+  {
       "f-person/auto-dark-mode.nvim",
     config = {
      update_interval = 1000,
