@@ -1,0 +1,61 @@
+format = """\
+$os\
+$directory\
+$git_branch\
+$git_metrics\
+$character\
+"""
+
+[os]
+format = "[$symbol ]($style)"
+style = "fg:#ea5ea8"
+disabled = false
+
+[os.symbols]
+Macos = ""
+
+[directory]
+format = "[ $path ]($style)"
+style = "fg:#00a5b3"
+truncation_length = 3
+truncation_symbol = ".../"
+
+[directory.substitutions]
+"~" = " "
+"Documents" = " "
+"Downloads" = " "
+"Pictures" = " "
+
+[git_branch]
+format = '[ $symbol $branch(:$remote_branch) ]($style)'
+symbol = " "
+style = "fg:#ea5ea8"
+
+[git_status]
+format = '[$all_status]($style)'
+style = "fg:#ffb100"
+
+[git_metrics]
+format = "([+$added]($added_style))[]($added_style)"
+added_style = "fg:#00aa64"
+deleted_style = "fg:#ea5ea8"
+disabled = false
+
+[hg_branch]
+format = "[ $symbol$branch ]($style)"
+symbol = " "
+
+[cmd_duration]
+format = "[  $duration ]($style)"
+style = "fg:bright-white bg:18"
+disabled = true
+
+[character]
+success_symbol = '[ ♥ ](#ea5ea8)'
+error_symbol = '[ 🧐](#E84D44) '
+
+[time]
+disabled = true
+time_format = "%R" # Hour:Minute Format
+style = "bg:#1d2230"
+format = '[[ 󱑍 $time ](bg:#1C3A5E fg:#8DFBD2)]($style)'
