@@ -27,16 +27,16 @@ truncation_symbol = ".../"
 "Pictures" = " "
 
 [git_branch]
-format = '[ $symbol $branch(:$remote_branch) ]($style)'
-symbol = " "
-style = "fg:#ea5ea8"
+format = '[$symbol $branch(:$remote_branch) ]($style)'
+symbol = ""
+style = "fg:#c96ef7"
 
 [git_status]
-format = '[$all_status]($style)'
+format = '[$all_status ]($style)'
 style = "fg:#ffb100"
 
 [git_metrics]
-format = "([+$added]($added_style))[]($added_style)"
+format = "([+$added]($added_style) )[]($added_style)"
 added_style = "fg:#00aa64"
 deleted_style = "fg:#ea5ea8"
 disabled = false
@@ -51,7 +51,7 @@ style = "fg:bright-white bg:18"
 disabled = true
 
 [character]
-success_symbol = '[ ♥ ](#ea5ea8)'
+success_symbol = '[♥ ](#ea5ea8)'
 error_symbol = '[ 🧐](#E84D44) '
 
 [time]
