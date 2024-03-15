@@ -83,7 +83,7 @@ export ZSH_CUSTOM="~/Repos/dotfiles/Zsh/Oh-My-Zsh/custom"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git z python sublime vscode github history docker golang) 
+plugins=(git python sublime vscode github history docker golang) 
 
 export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
 source $ZSH/oh-my-zsh.sh
@@ -126,6 +126,8 @@ alias gs='git status'
 alias gm='git checkout main'
 alias gp='git checkout -'
 alias ls=eza
+alias z=zoxide
+
 # source ~/Repos/dotfiles/Zsh/Oh-My-Zsh/custom/themes/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
@@ -141,4 +143,3 @@ alias ls=eza
 [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
 
 eval "$(starship init zsh)"
-
