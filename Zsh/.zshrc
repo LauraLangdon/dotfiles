@@ -125,7 +125,7 @@ alias config='/usr/bin/git --git-dir=/Users/lauralangdon/.cfg/ --work-tree=/User
 alias gs='git status'
 alias gm='git checkout main'
 alias gp='git checkout -'
-alias ls=eza
+alias ls='eza -la'
 alias z=zoxide
 
 # source ~/Repos/dotfiles/Zsh/Oh-My-Zsh/custom/themes/powerlevel10k/powerlevel10k.zsh-theme
