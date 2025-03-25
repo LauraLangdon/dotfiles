@@ -4,7 +4,7 @@
 	signingkey = 4AFB4DBF62D3CB66D1461F89C0904024CA5667E1
 [core]
 	autocrlf = input
-	excludesfile = /Users/lauralangdon/.gitignore_global
+	excludesfile = /Users/lauralangdon/.gitignore
 	pager = diff-so-fancy | less --tabs=4 -RFX
 [filter "lfs"]
 	clean = git-lfs clean -- %f
@@ -17,6 +17,7 @@
 	helper = /usr/local/share/gcm-core/git-credential-manager
 [commit]
 	gpgsign = true
+	verbose = true
 [alias]
 	logs = log --show-signature
 	cis = commit -S
@@ -30,3 +31,15 @@
 	defaultBranch = main
 [push]
 	autoSetupRemote = true
+	followTags = true
+[tag]
+	sort = version:refname
+[diff]
+	algorithm = histogram
+	colorMoved = plain
+	mnemonicPrefix = true
+	renames = true
+[fetch]
+	prune = true
+	pruneTags = true
+	all = true
