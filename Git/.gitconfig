@@ -4,7 +4,7 @@
 	signingkey = 4AFB4DBF62D3CB66D1461F89C0904024CA5667E1
 [core]
 	autocrlf = input
-	excludesfile = /Users/lauralangdon/.gitignore
+	excludesfile = /Users/lauralangdon/.gitignore_global
 	pager = diff-so-fancy | less --tabs=4 -RFX
 [filter "lfs"]
 	clean = git-lfs clean -- %f
