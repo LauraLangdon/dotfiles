@@ -1,7 +1,7 @@
 [user]
 	name = Laura Langdon
 	email = 48335772+LauraLangdon@users.noreply.github.com
-	signingkey = 4AFB4DBF62D3CB66D1461F89C0904024CA5667E1
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBaE/3cl2TMXeF/n4BBMlcuNQ1URQ34nRxKl+/FQ3j9p
 [core]
 	autocrlf = input
 	excludesfile = /Users/lauralangdon/.gitignore_global
@@ -21,6 +21,7 @@
 	cis = commit -S
 [gpg]
 	program = /usr/local/MacGPG2/bin/gpg2
+	format = ssh
 [credential "https://dev.azure.com"]
 	useHttpPath = true
 [safe]
@@ -41,3 +42,5 @@
 	prune = true
 	pruneTags = true
 	all = true
+[gpg "ssh"]
+	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
