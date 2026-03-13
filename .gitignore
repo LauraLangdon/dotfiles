@@ -1,0 +1,22 @@
+# macOS
+.DS_Store
+
+# Secrets — never commit these
+.env
+.env.*
+*.pem
+*.key
+*_rsa
+id_ed25519
+*.p12
+credentials.json
+
+# Editors
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Claude Code session data
+.claude/

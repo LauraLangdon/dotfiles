@@ -28,5 +28,5 @@ windows:
       - layout:
           split_direction: horizontal
           panes:
-            - cwd: /Users/lauralangdon
-            - cwd: /Users/lauralangdon
+            - cwd: ~
+            - cwd: ~

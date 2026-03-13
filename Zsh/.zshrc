@@ -58,8 +58,8 @@ export ZSH_CUSTOM=$HOME/Repos/dotfiles/Zsh/Oh-My-Zsh/custom
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git sublime golang)
 
-export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
-source $ZSH/oh-my-zsh.sh
+export ZSH_COMPDUMP="$ZSH/cache/.zcompdump-$HOST"
+source "$ZSH/oh-my-zsh.sh"
 
 
 alias gs='git status'
