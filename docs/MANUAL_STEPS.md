@@ -36,7 +36,7 @@ The Brewfile handles extension installation, but settings/keybindings come from 
 
 ## 5. Mac App Store apps
 
-The bootstrap optionally installs App Store apps from `Brewfile.mas` using `mas`. Some apps (like TestFlight) can't be installed via `mas` on macOS 26+ due to SIP restrictions — install these directly from the App Store app.
+The bootstrap optionally installs App Store apps from `Brewfile.mas` using `mas`. On macOS 26+, `mas` will prompt for your Apple ID password for each app — this is a known limitation (no fix available). Some apps can't be installed via `mas` at all due to SIP restrictions — install these directly from the App Store app.
 
 **Apps that require manual App Store install:**
 
