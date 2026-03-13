@@ -4,6 +4,7 @@ $directory\
 $git_branch\
 $git_metrics\
 $character\
+${custom.venv}\
 """
 
 [os]
@@ -51,8 +52,22 @@ style = "fg:bright-white bg:18"
 disabled = true
 
 [character]
-success_symbol = '[♥ ](#ea5ea8)'
+success_symbol = '[ ♥ ](#ea5ea8)'
 error_symbol = '[ 🧐](#E84D44) '
+
+[custom.venv]
+command = "echo \"($(basename $VIRTUAL_ENV))\""
+when = '[ -n "$VIRTUAL_ENV" ]'
+format = "[$output ]($style)"
+style = "fg:#ffb100"
+
+[python]
+disabled = true
+format = ""
+
+[conda]
+disabled = true
+format = ""
 
 [time]
 disabled = true
