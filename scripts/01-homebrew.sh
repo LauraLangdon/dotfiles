@@ -24,13 +24,26 @@ else
     success "Homebrew installed"
 fi
 
+# --- Ensure Homebrew is in PATH (needed on fresh installs) ---
+
+if [[ "$(uname -m)" == "arm64" ]]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+else
+    eval "$(/usr/local/bin/brew shellenv)"
+fi
+
 # --- Update and install packages ---
 
 info "Updating Homebrew..."
 brew update
 
 info "Installing packages from Brewfile..."
-brew bundle --file="$DOTFILES/Brewfile"
+# --no-lock: don't create a lockfile in the repo
+# Continue on non-fatal errors (e.g. link conflicts) — post-install will report missing tools.
+if ! brew bundle --file="$DOTFILES/Brewfile" --no-lock; then
+    warn "Some Brewfile entries had issues — check output above"
+    warn "You may need to run 'brew link --overwrite <formula>' for conflicts"
+fi
 
 info "Cleaning up..."
 brew cleanup

@@ -10,7 +10,6 @@
 
 tap "homebrew/services"
 tap "jesseduffield/lazygit"
-tap "koekeishiya/formulae"
 tap "midnightideas/extras"
 tap "pulumi/tap"
 tap "sass/sass"
@@ -28,6 +27,7 @@ brew "fd"               # Modern find replacement (simpler syntax, faster)
 brew "fzf"              # Fuzzy finder for files, history, and more
 brew "gh"               # GitHub CLI
 brew "git"              # Latest git (macOS version lags behind)
+brew "git-lfs"          # Git Large File Storage
 brew "gum"              # Pretty shell script prompts and formatting
 brew "helix"            # Modal text editor (Rust-based)
 brew "lazygit"          # Terminal UI for git
