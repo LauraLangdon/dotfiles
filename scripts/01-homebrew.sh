@@ -40,7 +40,7 @@ brew update
 info "Installing packages from Brewfile..."
 # --no-lock: don't create a lockfile in the repo
 # Continue on non-fatal errors (e.g. link conflicts) — post-install will report missing tools.
-if ! brew bundle --file="$DOTFILES/Brewfile" --no-lock; then
+if ! brew bundle --file="$DOTFILES/Brewfile"; then
     warn "Some Brewfile entries had issues — check output above"
     warn "You may need to run 'brew link --overwrite <formula>' for conflicts"
 fi

@@ -11,6 +11,10 @@ id_ed25519
 *.p12
 credentials.json
 
+# Sync script temp files
+Brewfile.new
+Brewfile.lock.json
+
 # Editors
 *.swp
 *.swo
