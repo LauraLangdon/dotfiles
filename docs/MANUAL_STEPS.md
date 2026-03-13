@@ -9,10 +9,12 @@ System Settings > Apple ID > Sign in. This syncs Keychain, Safari bookmarks, Not
 ## 2. Set up 1Password
 
 1. Download and sign in to [1Password](https://1password.com/downloads) (if not already installed via Homebrew cask)
-2. Go to **Settings > Developer** and enable:
+2. Go to **System Settings > General > Login Items & Extensions > Allow in the Background** and make sure 1Password is enabled
+3. Go to **1Password > Settings > Developer** and enable:
    - **SSH Agent** — lets git use your 1Password SSH keys for signing and auth
    - **CLI Integration** — allows the `op` CLI to access your vault
-3. Run `op signin` in the terminal to authorize the CLI
+4. Fully quit 1Password (`killall "1Password"` — Cmd-Q may not fully quit it) and relaunch
+5. Run `op signin` in the terminal to authorize the CLI
 
 Without this, SSH commit signing (`gpg.ssh.program` in `.gitconfig`) won't work.
 
@@ -34,7 +36,17 @@ The Brewfile handles extension installation, but settings/keybindings come from 
 
 ## 5. Mac App Store apps
 
-After the bootstrap installs `mas`, you can install App Store apps from the terminal:
+The bootstrap optionally installs App Store apps from `Brewfile.mas` using `mas`. Some apps (like TestFlight) can't be installed via `mas` on macOS 26+ due to SIP restrictions — install these directly from the App Store app.
+
+**Apps that require manual App Store install:**
+
+- **TestFlight** — `mas` fails with "Operation not permitted" (SIP blocks pkg install to system volume)
+
+**Apps removed (no longer in App Store):**
+
+- **Speechify** — pulled from the App Store as of March 2026
+
+**Using `mas` for everything else:**
 
 ```bash
 mas list          # Show currently installed App Store apps (on an existing machine)
@@ -60,7 +72,34 @@ If using iTerm2, point it to the dotfiles settings:
 3. Check "Load preferences from a custom folder or URL"
 4. Set the path to `~/Repos/dotfiles/iTerm/settings/`
 
-## 8. Restore from Time Machine (optional)
+## 8. Set up scheduled sync/apply
+
+The install script generates launchd plists with the correct paths for the current user — works regardless of username.
+
+**On your main machine** (the source of truth):
+
+```bash
+./launchd/install.sh sync
+```
+
+This runs `sync.sh --quiet` daily at noon, logging to `~/.dotfiles-sync.log`.
+
+**On secondary machines:**
+
+```bash
+./launchd/install.sh apply
+```
+
+This runs `apply.sh --quiet` every Monday at noon, logging to `~/.dotfiles-apply.log`.
+
+You can also run either script manually at any time:
+
+```bash
+./sync.sh    # Check for drift on main machine
+./apply.sh   # Pull and apply on secondary machine
+```
+
+## 9. Restore from Time Machine (optional)
 
 If you have a Time Machine backup, you can use Migration Assistant or manually copy:
 
