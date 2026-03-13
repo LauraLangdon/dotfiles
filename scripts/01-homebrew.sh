@@ -44,6 +44,9 @@ if ! brew bundle --file="$DOTFILES/Brewfile"; then
     warn "You may need to run 'brew link --overwrite <formula>' for conflicts"
 fi
 
+info "Upgrading outdated packages..."
+brew upgrade
+
 info "Cleaning up..."
 brew cleanup
 

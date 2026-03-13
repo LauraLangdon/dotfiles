@@ -42,13 +42,15 @@ fi
 info "Checking Homebrew packages..."
 
 if command_exists brew; then
+    brew update
     if ! brew bundle check --file="$DOTFILES/Brewfile" &>/dev/null; then
         info "Installing new Brewfile entries..."
         brew bundle --file="$DOTFILES/Brewfile"
-        success "Homebrew packages updated"
-    else
-        $QUIET || success "Homebrew packages up to date"
     fi
+    info "Upgrading outdated packages..."
+    brew upgrade
+    brew cleanup
+    success "Homebrew packages up to date"
 else
     warn "Homebrew not found — skipping package check"
 fi
