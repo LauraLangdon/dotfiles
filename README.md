@@ -16,14 +16,33 @@ Originally forked from [sheharyarn/dotfiles](https://github.com/sheharyarn/dotfi
 
 ## Quick start
 
-```bash
-# Clone the repo (--recursive pulls the Oh-My-Zsh submodule)
-git clone --recursive git@github.com:LauraLangdon/dotfiles.git ~/Repos/dotfiles
+On a fresh Mac, start by installing Xcode Command Line Tools (needed for `git`):
 
-# Run the bootstrap
+```bash
+xcode-select --install
+```
+
+Wait for that to finish, then clone and run:
+
+```bash
+mkdir -p ~/Repos
+git clone --recursive https://github.com/LauraLangdon/dotfiles.git ~/Repos/dotfiles
 cd ~/Repos/dotfiles
 ./bootstrap.sh
 ```
+
+> **Note:** Uses HTTPS for the clone since SSH keys won't be set up on a fresh machine yet. After bootstrap and 1Password setup, you can switch the remote to SSH:
+> ```bash
+> git remote set-url origin git@github.com:LauraLangdon/dotfiles.git
+> ```
+
+## Troubleshooting
+
+**`brew link` fails for `pkgconf`:** Run `brew link --overwrite pkgconf` and re-run `./bootstrap.sh`.
+
+**`brew install` fails with "undefined method 'install'":** A known Homebrew 5.1.0 regression. Run `brew update-reset` first, then retry the install.
+
+**`zsh: command not found: brew`:** Homebrew isn't in your PATH yet. Run `eval "$(/opt/homebrew/bin/brew shellenv)"` and re-run `./bootstrap.sh`.
 
 ## How it works
 
