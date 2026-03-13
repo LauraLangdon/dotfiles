@@ -68,7 +68,7 @@ alias gp='git checkout -'
 alias ls='eza -la'
 eval "$(zoxide init zsh)"
 
-export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
