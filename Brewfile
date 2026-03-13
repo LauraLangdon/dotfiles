@@ -74,24 +74,8 @@ cask "font-anonymice-nerd-font"             # AnonymicePro Nerd Font
 cask "font-fantasque-sans-mono-nerd-font"   # Fantasque Sans Mono Nerd Font
 
 # =============================================================================
-# Mac App Store (requires `mas` and being signed in to the App Store)
+# Mac App Store — see Brewfile.mas (installed separately to avoid auth prompts)
 # =============================================================================
-
-mas "1Password for Safari", id: 1569813296
-mas "Goodnotes", id: 1444383602
-mas "Kagi Search", id: 1622835804
-mas "Keynote", id: 409183694
-mas "Kindle", id: 302584613
-mas "Microsoft Outlook", id: 985367838
-mas "Mona 2", id: 6755672518
-mas "NEEWER Control Center", id: 1664344174
-mas "Numbers", id: 409203825
-mas "Pages", id: 409201541
-mas "Slack", id: 803453959
-mas "Speechify", id: 1624912180
-mas "TestFlight", id: 899247664
-mas "Things 3", id: 904280696
-mas "Xcode", id: 497799835
 
 # =============================================================================
 # VS Code Extensions

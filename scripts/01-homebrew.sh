@@ -38,7 +38,6 @@ info "Updating Homebrew..."
 brew update
 
 info "Installing packages from Brewfile..."
-# --no-lock: don't create a lockfile in the repo
 # Continue on non-fatal errors (e.g. link conflicts) — post-install will report missing tools.
 if ! brew bundle --file="$DOTFILES/Brewfile"; then
     warn "Some Brewfile entries had issues — check output above"
@@ -49,3 +48,18 @@ info "Cleaning up..."
 brew cleanup
 
 success "Homebrew packages installed"
+
+# --- Mac App Store apps (optional, requires sign-in) ---
+
+if [[ -f "$DOTFILES/Brewfile.mas" ]]; then
+    echo ""
+    if ask "Install Mac App Store apps? (requires Apple ID sign-in)"; then
+        info "Installing App Store apps..."
+        if ! brew bundle --file="$DOTFILES/Brewfile.mas"; then
+            warn "Some App Store installs had issues — you can retry with: brew bundle --file=Brewfile.mas"
+        fi
+        success "App Store apps installed"
+    else
+        info "Skipping App Store apps — install later with: brew bundle --file=Brewfile.mas"
+    fi
+fi
