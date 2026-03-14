@@ -1,0 +1,15 @@
+# Anki add-on IDs — one per line
+# Install: Tools > Add-ons > Get Add-ons, paste all IDs separated by spaces
+# Or run: ../scripts/anki-addons.sh
+374005964   # The KING of Button Add-ons
+566351439   # Syntax Highlighting NG
+651521808   # Set Font Size
+681236951   # Multi-Line Type Answer Box
+805891399   # Extended Editor for Field (tables, search/replace)
+877182321   # Enhance Main Window
+1087328706  # Markdown and KaTeX Support
+1210908941  # Custom Background Image and Gear Icon
+1431333984  # Change Interface Font
+1463041493  # Syntax Highlighting for Code
+1933645497  # Fill the Blanks — Multiple Typecloze Support
+2084557901  # LPCG (Lyrics/Poetry Cloze Generator)
