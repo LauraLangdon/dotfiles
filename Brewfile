@@ -33,6 +33,7 @@ brew "helix"            # Modal text editor (Rust-based)
 brew "lazygit"          # Terminal UI for git
 brew "mas"              # Mac App Store CLI (install apps from the terminal)
 brew "neovim"           # Extensible Vim fork with Lua config
+brew "pandoc"           # Universal document converter
 brew "poppler"          # PDF rendering library and CLI tools
 brew "ripgrep"          # Fast grep replacement (rg)
 brew "starship"         # Cross-shell prompt with sensible defaults
