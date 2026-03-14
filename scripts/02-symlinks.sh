@@ -18,6 +18,11 @@ symlink_safe "Zsh/.zshrc"                      "$HOME/.zshrc"
 symlink_safe "Zsh/.zprofile"                    "$HOME/.zprofile"
 symlink_safe "Zsh/Starship/starship.toml"       "$HOME/.config/starship.toml"
 
+# SSH
+mkdir -p "$HOME/.ssh"
+chmod 700 "$HOME/.ssh"
+symlink_safe "SSH/config"                        "$HOME/.ssh/config"
+
 # Mackup
 symlink_safe "Mackup/.mackup.cfg"               "$HOME/.mackup.cfg"
 
