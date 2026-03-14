@@ -124,6 +124,33 @@ defaults write com.apple.AppleMultitouchTrackpad TrackpadRightClick -bool true
 # Three-finger drag
 defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerDrag -bool true
 
+# Force click disabled (light click threshold)
+defaults write com.apple.AppleMultitouchTrackpad ForceSuppressed -bool true
+defaults write com.apple.AppleMultitouchTrackpad ActuateDetents -int 0
+defaults write com.apple.AppleMultitouchTrackpad FirstClickThreshold -int 0
+defaults write com.apple.AppleMultitouchTrackpad SecondClickThreshold -int 0
+
+# Pinch to zoom
+defaults write com.apple.AppleMultitouchTrackpad TrackpadPinch -bool true
+
+# Rotate with two fingers
+defaults write com.apple.AppleMultitouchTrackpad TrackpadRotate -bool true
+
+# Smart zoom (two-finger double tap)
+defaults write com.apple.AppleMultitouchTrackpad TrackpadTwoFingerDoubleTapGesture -bool true
+
+# Swipe between pages (two-finger horizontal swipe)
+defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerHorizSwipeGesture -int 0
+
+# Swipe between full-screen apps (four-finger horizontal swipe)
+defaults write com.apple.AppleMultitouchTrackpad TrackpadFourFingerHorizSwipeGesture -int 2
+
+# Mission Control (four-finger vertical swipe)
+defaults write com.apple.AppleMultitouchTrackpad TrackpadFourFingerVertSwipeGesture -int 2
+
+# Disable notification center swipe from right edge
+defaults write com.apple.AppleMultitouchTrackpad TrackpadTwoFingerFromRightEdgeSwipeGesture -int 0
+
 # =============================================================================
 # Keyboard & Text
 # =============================================================================

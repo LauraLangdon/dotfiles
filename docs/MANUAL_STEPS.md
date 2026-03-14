@@ -122,18 +122,28 @@ Per-app notification settings can't be reliably automated. Review System Setting
 - **Analytics & Improvements**: System Settings > Privacy & Security > Analytics & Improvements > turn off all sharing
 - **App permissions**: Review Camera, Microphone, Accessibility, Full Disk Access, Screen & System Audio Recording as apps request them
 
-## 12. Passwords & autofill
+## 12. Touch ID & Apple Watch
+
+- **Touch ID**: System Settings > Touch ID & Password > add fingerprint(s)
+- **Apple Watch unlock**: System Settings > Touch ID & Password > enable "Use Apple Watch to unlock"
+
+## 13. Internet Accounts & Apple Wallet
+
+- **Internet Accounts**: System Settings > Internet Accounts > sign in to all accounts (Google, Exchange, etc.)
+- **Apple Wallet**: System Settings > Wallet & Apple Pay > add cards
+
+## 14. Passwords & autofill
 
 - System Settings > Passwords > Password Options > turn off AutoFill Passwords and Passkeys
 
-## 13. Terminal font
+## 15. Terminal font
 
 Set your terminal's font to a Nerd Font so Starship prompt icons render correctly:
 
 - **Warp**: Settings > Appearance > Font → "AnonymicePro Nerd Font" or "FantasqueSansM Nerd Font"
 - **iTerm2**: Profiles > Text > Font → same
 
-## 14. iTerm2 settings
+## 16. iTerm2 settings
 
 If using iTerm2, point it to the dotfiles settings:
 
@@ -142,7 +152,7 @@ If using iTerm2, point it to the dotfiles settings:
 3. Check "Load preferences from a custom folder or URL"
 4. Set the path to `~/Repos/dotfiles/iTerm/settings/`
 
-## 15. Set up scheduled sync/apply
+## 17. Set up scheduled sync/apply
 
 The install script generates launchd plists with the correct paths for the current user — works regardless of username.
 
@@ -169,7 +179,7 @@ You can also run either script manually at any time:
 ./apply.sh   # Pull and apply on secondary machine
 ```
 
-## 16. Restore from Time Machine (optional)
+## 18. Restore from Time Machine (optional)
 
 If you have a Time Machine backup, you can use Migration Assistant or manually copy:
 
