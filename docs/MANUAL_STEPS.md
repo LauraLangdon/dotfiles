@@ -6,7 +6,27 @@ These steps can't be automated and need to be done by hand after running `./boot
 
 System Settings > Apple ID > Sign in. This syncs Keychain, Safari bookmarks, Notes, Reminders, and other iCloud data.
 
-## 2. Set up 1Password
+## 2. Restore app settings with Mackup
+
+Mackup backs up and restores app settings (Bartender, CleanShot, Mosaic, Stay, OBS, Setapp apps, etc.) via iCloud Drive.
+
+**On your main machine** (one-time setup, then runs automatically):
+
+```bash
+mackup backup
+```
+
+**On a new machine** (after iCloud has finished syncing):
+
+```bash
+mackup restore
+```
+
+This creates symlinks from each app's settings to iCloud Drive, keeping them in sync across machines. To see which apps Mackup supports: `mackup list`.
+
+Apps already managed by the dotfiles repo (git, vim, neovim, zsh, starship) are excluded via `~/.mackup.cfg`.
+
+## 3. Set up 1Password
 
 1. Download and sign in to [1Password](https://1password.com/downloads) (if not already installed via Homebrew cask)
 2. Go to **System Settings > General > Login Items & Extensions > Allow in the Background** and make sure 1Password is enabled
@@ -18,7 +38,7 @@ System Settings > Apple ID > Sign in. This syncs Keychain, Safari bookmarks, Not
 
 Without this, SSH commit signing (`gpg.ssh.program` in `.gitconfig`) won't work.
 
-## 3. Install Node.js via NVM
+## 4. Install Node.js via NVM
 
 The bootstrap installed NVM but not Node.js itself. Install the latest LTS version:
 
@@ -26,7 +46,7 @@ The bootstrap installed NVM but not Node.js itself. Install the latest LTS versi
 nvm install --lts
 ```
 
-## 4. VS Code settings sync
+## 5. VS Code settings sync
 
 1. Open VS Code
 2. Sign in with your GitHub account (bottom-left profile icon)
@@ -34,7 +54,7 @@ nvm install --lts
 
 The Brewfile handles extension installation, but settings/keybindings come from sync.
 
-## 5. Mac App Store apps
+## 6. Mac App Store apps
 
 The bootstrap optionally installs App Store apps from `Brewfile.mas` using `mas`. On macOS 26+, `mas` will prompt for your Apple ID password for each app — this is a known limitation (no fix available). Some apps can't be installed via `mas` at all due to SIP restrictions — install these directly from the App Store app.
 
@@ -56,7 +76,7 @@ mas install <id>  # Install by ID
 
 To capture your current App Store apps for the Brewfile, run `mas list` on your existing machine and add them as `mas "<name>", id: <id>` entries.
 
-## 6. Mona 2 settings
+## 7. Mona 2 settings
 
 Import settings from the bundled export file:
 
@@ -66,7 +86,7 @@ Import settings from the bundled export file:
 
 To update the export: Settings > Export Settings, save to `~/Repos/dotfiles/Mona/` and commit.
 
-## 7. Set default apps
+## 8. Set default apps
 
 macOS doesn't reliably allow setting default apps via the command line. Set these manually:
 
@@ -74,8 +94,9 @@ macOS doesn't reliably allow setting default apps via the command line. Set thes
 - **Default email**: Apple Mail — Mail > Settings > General > Default email reader
 - **Default PDF viewer**: Adobe Acrobat Pro — right-click any PDF > Get Info > Open With > Change All
 - **Default media player**: IINA — right-click any video file > Get Info > Open With > Change All
+- **Default text/code editor**: Sublime Text — the bootstrap created sample files in `~/Desktop/set-default-editor/`. For each file: right-click > Get Info > Open With > Sublime Text > **Change All**. Delete the folder when done.
 
-## 8. Login items
+## 9. Login items
 
 Add these apps to System Settings > General > Login Items > Open at Login:
 
@@ -104,14 +125,14 @@ Also ensure these apps are allowed to run in the background (same Settings page,
 
 - 1Password (required for CLI/SSH integration)
 
-## 9. Display settings
+## 10. Display settings
 
 These can't be set via the command line:
 
 - **Night Shift**: System Settings > Displays > Night Shift > Schedule: Sunset to Sunrise, color temperature: halfway
 - **Wallpaper**: System Settings > Wallpaper > toggle "Show on All Spaces"
 
-## 10. Notifications
+## 11. Notifications
 
 Per-app notification settings can't be reliably automated. Review System Settings > Notifications and configure as needed. Key apps to check:
 
@@ -119,48 +140,48 @@ Per-app notification settings can't be reliably automated. Review System Setting
 - Microsoft Outlook, Vimcal — enable alerts
 - Spotify, Chrome, iTerm2 — banners only or off
 
-## 11. Lock Screen & Power
+## 12. Lock Screen & Power
 
 - **Screen saver**: System Settings > Lock Screen > set start time
 - **Require password**: System Settings > Lock Screen > Require password after screen saver begins
 - **Display sleep**: System Settings > Lock Screen > Turn display off on battery (2 hours) / on power adapter (10 minutes)
 - **Prevent sleep on AC**: System Settings > Lock Screen > Prevent automatic sleeping on power adapter when display is off
 
-## 12. Privacy & Security
+## 13. Privacy & Security
 
 - **FileVault**: Should already be on. Verify in System Settings > Privacy & Security > FileVault
 - **Analytics & Improvements**: System Settings > Privacy & Security > Analytics & Improvements > turn off all sharing
 - **App permissions**: Review Camera, Microphone, Accessibility, Full Disk Access, Screen & System Audio Recording as apps request them
 
-## 13. Touch ID & Apple Watch
+## 14. Touch ID & Apple Watch
 
 - **Touch ID**: System Settings > Touch ID & Password > add fingerprint(s)
 - **Apple Watch unlock**: System Settings > Touch ID & Password > enable "Use Apple Watch to unlock"
 
-## 14. Internet Accounts & Apple Wallet
+## 15. Internet Accounts & Apple Wallet
 
 - **Internet Accounts**: System Settings > Internet Accounts > sign in to all accounts (Google, Exchange, etc.)
 - **Apple Wallet**: System Settings > Wallet & Apple Pay > add cards
 
-## 15. Obsidian vault
+## 16. Obsidian vault
 
 Open Obsidian and select "Open folder as vault", then point it to `~/Obsidian-parent/Brain` (available after iCloud syncs).
 
-## 16. Passwords & autofill
+## 17. Passwords & autofill
 
 1Password is used for all password management. Disable macOS built-in autofill so it doesn't compete:
 
 - System Settings > Passwords > Password Options > turn off AutoFill Passwords and Passkeys
 - System Settings > Apple ID > iCloud > Passwords & Keychain > turn off (if not already off)
 
-## 17. Terminal font
+## 18. Terminal font
 
 Set your terminal's font to a Nerd Font so Starship prompt icons render correctly:
 
 - **Warp**: Settings > Appearance > Font → "AnonymicePro Nerd Font" or "FantasqueSansM Nerd Font"
 - **iTerm2**: Profiles > Text > Font → same
 
-## 18. iTerm2 settings
+## 19. iTerm2 settings
 
 If using iTerm2, point it to the dotfiles settings:
 
@@ -169,7 +190,7 @@ If using iTerm2, point it to the dotfiles settings:
 3. Check "Load preferences from a custom folder or URL"
 4. Set the path to `~/Repos/dotfiles/iTerm/settings/`
 
-## 19. Set up scheduled sync/apply
+## 20. Set up scheduled sync/apply
 
 The install script generates launchd plists with the correct paths for the current user — works regardless of username.
 
@@ -196,7 +217,7 @@ You can also run either script manually at any time:
 ./apply.sh   # Pull and apply on secondary machine
 ```
 
-## 20. Keychain prompts on secondary machines
+## 21. Keychain prompts on secondary machines
 
 If macOS keeps asking for your keychain password, the login keychain may be auto-locking. Fix by disabling the timeout:
 
@@ -210,7 +231,7 @@ If that doesn't help, other causes:
 - **iCloud Keychain sync conflicts**: Toggle off and on in System Settings > Apple ID > iCloud > Passwords & Keychain
 - **Corrupt login keychain**: In Keychain Access, Preferences > Reset My Default Keychains (will lose locally-stored keychain items)
 
-## 21. Restore from Time Machine (optional)
+## 22. Restore from Time Machine (optional)
 
 If you have a Time Machine backup, you can use Migration Assistant or manually copy:
 

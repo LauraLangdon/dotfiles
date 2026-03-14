@@ -74,6 +74,22 @@ for font_pattern in "AnonymiceProNerdFont" "FantasqueSansMNerdFont"; do
     fi
 done
 
+# --- Anki add-ons ---
+
+source "$DOTFILES/scripts/anki-addons.sh"
+
+# --- Default editor sample files ---
+
+source "$DOTFILES/scripts/default-editor-samples.sh"
+
+# --- Mackup (app settings restore) ---
+
+if command_exists mackup; then
+    info "Mackup can restore app settings from iCloud."
+    info "Run 'mackup restore' after iCloud has finished syncing."
+    info "On your main machine, run 'mackup backup' first if you haven't already."
+fi
+
 # --- Summary ---
 
 echo ""
