@@ -56,7 +56,17 @@ mas install <id>  # Install by ID
 
 To capture your current App Store apps for the Brewfile, run `mas list` on your existing machine and add them as `mas "<name>", id: <id>` entries.
 
-## 6. Set default apps
+## 6. Mona 2 settings
+
+Import settings from the bundled export file:
+
+1. Open Mona 2
+2. Settings > scroll to bottom > Import Settings
+3. Select `~/Repos/dotfiles/Mona/Mona Settings.springsettings`
+
+To update the export: Settings > Export Settings, save to `~/Repos/dotfiles/Mona/` and commit.
+
+## 7. Set default apps
 
 macOS doesn't reliably allow setting default apps via the command line. Set these manually:
 
