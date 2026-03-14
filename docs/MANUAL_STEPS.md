@@ -76,7 +76,27 @@ mas install <id>  # Install by ID
 
 To capture your current App Store apps for the Brewfile, run `mas list` on your existing machine and add them as `mas "<name>", id: <id>` entries.
 
-## 7. Mona 2 settings
+## 7. Setapp apps
+
+Sign into [Setapp](https://setapp.com) and install the following apps from the catalog (or restore via Time Machine):
+
+- Almighty
+- Bartender
+- CleanMyMac
+- CleanShot X
+- ClearVPN
+- Downie
+- Due
+- In Your Face
+- MindNode Classic
+- Mission Control Plus
+- Mosaic
+- Sip
+- Supercharge
+
+Mackup will restore their settings automatically once the apps are installed.
+
+## 8. Mona 2 settings
 
 Import settings from the bundled export file:
 
@@ -86,7 +106,7 @@ Import settings from the bundled export file:
 
 To update the export: Settings > Export Settings, save to `~/Repos/dotfiles/Mona/` and commit.
 
-## 8. Anki add-ons
+## 9. Anki add-ons
 
 The bootstrap prints the add-on IDs to install. In Anki:
 
@@ -97,7 +117,7 @@ The bootstrap prints the add-on IDs to install. In Anki:
 
 **Keeping add-ons in sync:** `sync.sh` checks for add-on or config changes. If it reports drift, run `./scripts/anki-sync.sh` to update the repo, then commit and push.
 
-## 9. Set default apps
+## 10. Set default apps
 
 macOS doesn't reliably allow setting default apps via the command line. Set these manually:
 
@@ -107,7 +127,7 @@ macOS doesn't reliably allow setting default apps via the command line. Set thes
 - **Default media player**: IINA — right-click any video file > Get Info > Open With > Change All
 - **Default text/code editor**: Sublime Text — the bootstrap created sample files in `~/Desktop/set-default-editor/`. For each file: right-click > Get Info > Open With > Sublime Text > **Change All**. Delete the folder when done.
 
-## 10. Login items
+## 11. Login items
 
 Add these apps to System Settings > General > Login Items > Open at Login:
 
@@ -136,14 +156,14 @@ Also ensure these apps are allowed to run in the background (same Settings page,
 
 - 1Password (required for CLI/SSH integration)
 
-## 11. Display settings
+## 12. Display settings
 
 These can't be set via the command line:
 
 - **Night Shift**: System Settings > Displays > Night Shift > Schedule: Sunset to Sunrise, color temperature: halfway
 - **Wallpaper**: System Settings > Wallpaper > toggle "Show on All Spaces"
 
-## 12. Notifications
+## 13. Notifications
 
 Per-app notification settings can't be reliably automated. Review System Settings > Notifications and configure as needed. Key apps to check:
 
@@ -151,48 +171,48 @@ Per-app notification settings can't be reliably automated. Review System Setting
 - Microsoft Outlook, Vimcal — enable alerts
 - Spotify, Chrome, iTerm2 — banners only or off
 
-## 13. Lock Screen & Power
+## 14. Lock Screen & Power
 
 - **Screen saver**: System Settings > Lock Screen > set start time
 - **Require password**: System Settings > Lock Screen > Require password after screen saver begins
 - **Display sleep**: System Settings > Lock Screen > Turn display off on battery (2 hours) / on power adapter (10 minutes)
 - **Prevent sleep on AC**: System Settings > Lock Screen > Prevent automatic sleeping on power adapter when display is off
 
-## 14. Privacy & Security
+## 15. Privacy & Security
 
 - **FileVault**: Should already be on. Verify in System Settings > Privacy & Security > FileVault
 - **Analytics & Improvements**: System Settings > Privacy & Security > Analytics & Improvements > turn off all sharing
 - **App permissions**: Review Camera, Microphone, Accessibility, Full Disk Access, Screen & System Audio Recording as apps request them
 
-## 15. Touch ID & Apple Watch
+## 16. Touch ID & Apple Watch
 
 - **Touch ID**: System Settings > Touch ID & Password > add fingerprint(s)
 - **Apple Watch unlock**: System Settings > Touch ID & Password > enable "Use Apple Watch to unlock"
 
-## 16. Internet Accounts & Apple Wallet
+## 17. Internet Accounts & Apple Wallet
 
 - **Internet Accounts**: System Settings > Internet Accounts > sign in to all accounts (Google, Exchange, etc.)
 - **Apple Wallet**: System Settings > Wallet & Apple Pay > add cards
 
-## 17. Obsidian vault
+## 18. Obsidian vault
 
 Open Obsidian and select "Open folder as vault", then point it to `~/Obsidian-parent/Brain` (available after iCloud syncs).
 
-## 18. Passwords & autofill
+## 19. Passwords & autofill
 
 1Password is used for all password management. Disable macOS built-in autofill so it doesn't compete:
 
 - System Settings > Passwords > Password Options > turn off AutoFill Passwords and Passkeys
 - System Settings > Apple ID > iCloud > Passwords & Keychain > turn off (if not already off)
 
-## 19. Terminal font
+## 20. Terminal font
 
 Set your terminal's font to a Nerd Font so Starship prompt icons render correctly:
 
 - **Warp**: Settings > Appearance > Font → "AnonymicePro Nerd Font" or "FantasqueSansM Nerd Font"
 - **iTerm2**: Profiles > Text > Font → same
 
-## 20. iTerm2 settings
+## 21. iTerm2 settings
 
 If using iTerm2, point it to the dotfiles settings:
 
@@ -201,7 +221,7 @@ If using iTerm2, point it to the dotfiles settings:
 3. Check "Load preferences from a custom folder or URL"
 4. Set the path to `~/Repos/dotfiles/iTerm/settings/`
 
-## 21. Set up scheduled sync/apply
+## 22. Set up scheduled sync/apply
 
 The install script generates launchd plists with the correct paths for the current user — works regardless of username.
 
@@ -228,7 +248,7 @@ You can also run either script manually at any time:
 ./apply.sh   # Pull and apply on secondary machine
 ```
 
-## 22. Keychain prompts on secondary machines
+## 23. Keychain prompts on secondary machines
 
 If macOS keeps asking for your keychain password, the login keychain may be auto-locking. Fix by disabling the timeout:
 
@@ -242,7 +262,7 @@ If that doesn't help, other causes:
 - **iCloud Keychain sync conflicts**: Toggle off and on in System Settings > Apple ID > iCloud > Passwords & Keychain
 - **Corrupt login keychain**: In Keychain Access, Preferences > Reset My Default Keychains (will lose locally-stored keychain items)
 
-## 23. Restore from Time Machine (optional)
+## 24. Restore from Time Machine (optional)
 
 If you have a Time Machine backup, you can use Migration Assistant or manually copy:
 
