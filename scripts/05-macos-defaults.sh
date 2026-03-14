@@ -206,7 +206,7 @@ defaults write NSGlobalDomain AppleIconAppearanceCustomTintColor -string "1.0000
 # =============================================================================
 
 # Reduce motion (less animation in UI transitions)
-defaults write com.apple.universalaccess reduceMotion -bool true
+sudo defaults write com.apple.universalaccess reduceMotion -bool true
 
 # =============================================================================
 # Stage Manager & Window Management
