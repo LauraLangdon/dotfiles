@@ -67,13 +67,15 @@ cask "1password-cli"            # 1Password CLI (op)
 cask "git-credential-manager"   # Git Credential Manager
 
 # =============================================================================
-# Fonts (Nerd Font variants for terminal/prompt icons)
+# Fonts
 # =============================================================================
 
 cask "font-anonymice-nerd-font"             # AnonymicePro Nerd Font
 cask "font-atkinson-hyperlegible"           # Atkinson Hyperlegible (accessibility)
 cask "font-atkinson-hyperlegible-next"      # Atkinson Hyperlegible Next
 cask "font-fantasque-sans-mono-nerd-font"   # Fantasque Sans Mono Nerd Font
+cask "font-nunito-sans"                     # Nunito Sans (used in Zen Browser)
+cask "font-raleway"                         # Raleway (used in Zen Browser)
 
 # =============================================================================
 # Mac App Store — see Brewfile.mas (installed separately to avoid auth prompts)
