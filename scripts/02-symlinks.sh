@@ -18,6 +18,9 @@ symlink_safe "Zsh/.zshrc"                      "$HOME/.zshrc"
 symlink_safe "Zsh/.zprofile"                    "$HOME/.zprofile"
 symlink_safe "Zsh/Starship/starship.toml"       "$HOME/.config/starship.toml"
 
+# Mackup
+symlink_safe "Mackup/.mackup.cfg"               "$HOME/.mackup.cfg"
+
 # Git
 symlink_safe "Git/.gitconfig"                   "$HOME/.gitconfig"
 symlink_safe "Git/.gitignore_global"            "$HOME/.gitignore_global"

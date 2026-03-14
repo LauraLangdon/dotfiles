@@ -31,6 +31,7 @@ brew "git-lfs"          # Git Large File Storage
 brew "gum"              # Pretty shell script prompts and formatting
 brew "helix"            # Modal text editor (Rust-based)
 brew "lazygit"          # Terminal UI for git
+brew "mackup"           # Backup and sync app settings via iCloud/Dropbox
 brew "mas"              # Mac App Store CLI (install apps from the terminal)
 brew "neovim"           # Extensible Vim fork with Lua config
 brew "pandoc"           # Universal document converter
