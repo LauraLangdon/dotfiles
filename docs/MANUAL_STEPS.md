@@ -249,5 +249,14 @@ If you have a Time Machine backup, you can use Migration Assistant or manually c
 - `~/Documents/`
 - `~/Pictures/`
 - `~/Repos/` (though you'll want to `git pull` in each repo instead)
+
+**App data not covered by Mackup, iCloud, or the bootstrap:**
+
 - `~/Library/Application Support/com.elgato.StreamDeck/` — Stream Deck profiles and plugins (too large for Mackup/iCloud)
-- Any other personal files
+- `~/Library/Application Support/Steam/` — game saves (for games without Steam Cloud)
+- `~/Library/Application Support/Sid Meier's Civilization VI/` — save games
+- `~/Library/Application Support/Logic/` — custom patches, templates, downloaded sound libraries
+- `~/Library/Application Support/DaVinci Resolve/` — project databases and settings
+- `~/Library/Application Support/obs-studio/` — scenes, profiles, and plugin configs
+
+Everything else is either synced via iCloud/cloud services, restored by Mackup, or reinstalled by the bootstrap.
