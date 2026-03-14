@@ -75,7 +75,7 @@ macOS doesn't reliably allow setting default apps via the command line. Set thes
 - **Default PDF viewer**: Adobe Acrobat Pro — right-click any PDF > Get Info > Open With > Change All
 - **Default media player**: IINA — right-click any video file > Get Info > Open With > Change All
 
-## 7. Login items
+## 8. Login items
 
 Add these apps to System Settings > General > Login Items > Open at Login:
 
@@ -104,14 +104,14 @@ Also ensure these apps are allowed to run in the background (same Settings page,
 
 - 1Password (required for CLI/SSH integration)
 
-## 8. Display settings
+## 9. Display settings
 
 These can't be set via the command line:
 
 - **Night Shift**: System Settings > Displays > Night Shift > Schedule: Sunset to Sunrise, color temperature: halfway
 - **Wallpaper**: System Settings > Wallpaper > toggle "Show on All Spaces"
 
-## 9. Notifications
+## 10. Notifications
 
 Per-app notification settings can't be reliably automated. Review System Settings > Notifications and configure as needed. Key apps to check:
 
@@ -119,45 +119,48 @@ Per-app notification settings can't be reliably automated. Review System Setting
 - Microsoft Outlook, Vimcal — enable alerts
 - Spotify, Chrome, iTerm2 — banners only or off
 
-## 10. Lock Screen & Power
+## 11. Lock Screen & Power
 
 - **Screen saver**: System Settings > Lock Screen > set start time
 - **Require password**: System Settings > Lock Screen > Require password after screen saver begins
 - **Display sleep**: System Settings > Lock Screen > Turn display off on battery (2 hours) / on power adapter (10 minutes)
 - **Prevent sleep on AC**: System Settings > Lock Screen > Prevent automatic sleeping on power adapter when display is off
 
-## 11. Privacy & Security
+## 12. Privacy & Security
 
 - **FileVault**: Should already be on. Verify in System Settings > Privacy & Security > FileVault
 - **Analytics & Improvements**: System Settings > Privacy & Security > Analytics & Improvements > turn off all sharing
 - **App permissions**: Review Camera, Microphone, Accessibility, Full Disk Access, Screen & System Audio Recording as apps request them
 
-## 12. Touch ID & Apple Watch
+## 13. Touch ID & Apple Watch
 
 - **Touch ID**: System Settings > Touch ID & Password > add fingerprint(s)
 - **Apple Watch unlock**: System Settings > Touch ID & Password > enable "Use Apple Watch to unlock"
 
-## 13. Internet Accounts & Apple Wallet
+## 14. Internet Accounts & Apple Wallet
 
 - **Internet Accounts**: System Settings > Internet Accounts > sign in to all accounts (Google, Exchange, etc.)
 - **Apple Wallet**: System Settings > Wallet & Apple Pay > add cards
 
-## 14. Obsidian vault
+## 15. Obsidian vault
 
 Open Obsidian and select "Open folder as vault", then point it to `~/Obsidian-parent/Brain` (available after iCloud syncs).
 
-## 15. Passwords & autofill
+## 16. Passwords & autofill
+
+1Password is used for all password management. Disable macOS built-in autofill so it doesn't compete:
 
 - System Settings > Passwords > Password Options > turn off AutoFill Passwords and Passkeys
+- System Settings > Apple ID > iCloud > Passwords & Keychain > turn off (if not already off)
 
-## 16. Terminal font
+## 17. Terminal font
 
 Set your terminal's font to a Nerd Font so Starship prompt icons render correctly:
 
 - **Warp**: Settings > Appearance > Font → "AnonymicePro Nerd Font" or "FantasqueSansM Nerd Font"
 - **iTerm2**: Profiles > Text > Font → same
 
-## 17. iTerm2 settings
+## 18. iTerm2 settings
 
 If using iTerm2, point it to the dotfiles settings:
 
@@ -166,7 +169,7 @@ If using iTerm2, point it to the dotfiles settings:
 3. Check "Load preferences from a custom folder or URL"
 4. Set the path to `~/Repos/dotfiles/iTerm/settings/`
 
-## 18. Set up scheduled sync/apply
+## 19. Set up scheduled sync/apply
 
 The install script generates launchd plists with the correct paths for the current user — works regardless of username.
 
@@ -193,7 +196,21 @@ You can also run either script manually at any time:
 ./apply.sh   # Pull and apply on secondary machine
 ```
 
-## 19. Restore from Time Machine (optional)
+## 20. Keychain prompts on secondary machines
+
+If macOS keeps asking for your keychain password, the login keychain may be auto-locking. Fix by disabling the timeout:
+
+```bash
+security set-keychain-settings -t 0 ~/Library/Keychains/login.keychain-db
+```
+
+If that doesn't help, other causes:
+
+- **Keychain password doesn't match login password**: Open Keychain Access > Edit > Change Password for Keychain "login"
+- **iCloud Keychain sync conflicts**: Toggle off and on in System Settings > Apple ID > iCloud > Passwords & Keychain
+- **Corrupt login keychain**: In Keychain Access, Preferences > Reset My Default Keychains (will lose locally-stored keychain items)
+
+## 21. Restore from Time Machine (optional)
 
 If you have a Time Machine backup, you can use Migration Assistant or manually copy:
 
