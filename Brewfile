@@ -71,6 +71,8 @@ cask "git-credential-manager"   # Git Credential Manager
 # =============================================================================
 
 cask "font-anonymice-nerd-font"             # AnonymicePro Nerd Font
+cask "font-atkinson-hyperlegible"           # Atkinson Hyperlegible (accessibility)
+cask "font-atkinson-hyperlegible-next"      # Atkinson Hyperlegible Next
 cask "font-fantasque-sans-mono-nerd-font"   # Fantasque Sans Mono Nerd Font
 
 # =============================================================================
