@@ -249,4 +249,5 @@ If you have a Time Machine backup, you can use Migration Assistant or manually c
 - `~/Documents/`
 - `~/Pictures/`
 - `~/Repos/` (though you'll want to `git pull` in each repo instead)
+- `~/Library/Application Support/com.elgato.StreamDeck/` — Stream Deck profiles and plugins (too large for Mackup/iCloud)
 - Any other personal files
