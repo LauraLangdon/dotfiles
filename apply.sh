@@ -50,6 +50,20 @@ if command_exists brew; then
     info "Upgrading outdated packages..."
     brew upgrade
     brew cleanup
+
+    # Check for installed packages not in the Brewfile
+    stale="$(brew bundle cleanup --file="$DOTFILES/Brewfile" 2>/dev/null)"
+    if [[ -n "$stale" ]]; then
+        warn "Installed but not in Brewfile:"
+        echo "$stale"
+        if ask "Uninstall these?"; then
+            brew bundle cleanup --force --file="$DOTFILES/Brewfile"
+            success "Stale packages removed"
+        else
+            info "Skipped — keeping extra packages"
+        fi
+    fi
+
     success "Homebrew packages up to date"
 else
     warn "Homebrew not found — skipping package check"
