@@ -30,6 +30,20 @@ symlink_safe "Vim/.vim"                         "$HOME/.vim"
 # Terminals
 symlink_safe "Warp"                             "$HOME/.warp"
 
+# Custom fonts (not available via Homebrew)
+FONT_DIR="$HOME/Library/Fonts"
+mkdir -p "$FONT_DIR"
+for font in "$DOTFILES"/fonts/*.ttf "$DOTFILES"/fonts/*.otf; do
+    [[ -f "$font" ]] || continue
+    name="$(basename "$font")"
+    if [[ -f "$FONT_DIR/$name" ]]; then
+        success "Font '$name' already installed"
+    else
+        cp "$font" "$FONT_DIR/$name"
+        success "Font '$name' installed"
+    fi
+done
+
 # VS Code custom themes (not on marketplace — cloned from GitHub)
 VSCODE_EXT="$HOME/.vscode/extensions"
 mkdir -p "$VSCODE_EXT"
