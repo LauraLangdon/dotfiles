@@ -56,14 +56,84 @@ mas install <id>  # Install by ID
 
 To capture your current App Store apps for the Brewfile, run `mas list` on your existing machine and add them as `mas "<name>", id: <id>` entries.
 
-## 6. Terminal font
+## 6. Set default apps
+
+macOS doesn't reliably allow setting default apps via the command line. Set these manually:
+
+- **Default browser**: Zen Browser — System Settings > Desktop & Dock > Default web browser
+- **Default email**: Apple Mail — Mail > Settings > General > Default email reader
+- **Default PDF viewer**: Adobe Acrobat Pro — right-click any PDF > Get Info > Open With > Change All
+- **Default media player**: IINA — right-click any video file > Get Info > Open With > Change All
+
+## 7. Login items
+
+Add these apps to System Settings > General > Login Items > Open at Login:
+
+- Stay
+- CleanShot X
+- Things
+- Mosaic
+- Raycast
+- Mission Control Plus
+- Zen Browser
+- Obsidian
+- Slack
+- Microsoft Outlook
+- Vimcal
+- Google Drive
+- Discord
+- Bartender
+- In Your Face
+- noTunes
+- Warp
+- Messages
+- ClearVPN
+- Signal
+
+Also ensure these apps are allowed to run in the background (same Settings page, under "Allow in the Background"):
+
+- 1Password (required for CLI/SSH integration)
+
+## 8. Display settings
+
+These can't be set via the command line:
+
+- **Night Shift**: System Settings > Displays > Night Shift > Schedule: Sunset to Sunrise, color temperature: halfway
+- **Wallpaper**: System Settings > Wallpaper > toggle "Show on All Spaces"
+
+## 9. Notifications
+
+Per-app notification settings can't be reliably automated. Review System Settings > Notifications and configure as needed. Key apps to check:
+
+- Slack, Discord, Signal, Messages — ensure notifications are on
+- Microsoft Outlook, Vimcal — enable alerts
+- Spotify, Chrome, iTerm2 — banners only or off
+
+## 10. Lock Screen & Power
+
+- **Screen saver**: System Settings > Lock Screen > set start time
+- **Require password**: System Settings > Lock Screen > Require password after screen saver begins
+- **Display sleep**: System Settings > Lock Screen > Turn display off on battery (2 hours) / on power adapter (10 minutes)
+- **Prevent sleep on AC**: System Settings > Lock Screen > Prevent automatic sleeping on power adapter when display is off
+
+## 11. Privacy & Security
+
+- **FileVault**: Should already be on. Verify in System Settings > Privacy & Security > FileVault
+- **Analytics & Improvements**: System Settings > Privacy & Security > Analytics & Improvements > turn off all sharing
+- **App permissions**: Review Camera, Microphone, Accessibility, Full Disk Access, Screen & System Audio Recording as apps request them
+
+## 12. Passwords & autofill
+
+- System Settings > Passwords > Password Options > turn off AutoFill Passwords and Passkeys
+
+## 13. Terminal font
 
 Set your terminal's font to a Nerd Font so Starship prompt icons render correctly:
 
 - **Warp**: Settings > Appearance > Font → "AnonymicePro Nerd Font" or "FantasqueSansM Nerd Font"
 - **iTerm2**: Profiles > Text > Font → same
 
-## 7. iTerm2 settings
+## 14. iTerm2 settings
 
 If using iTerm2, point it to the dotfiles settings:
 
@@ -72,7 +142,7 @@ If using iTerm2, point it to the dotfiles settings:
 3. Check "Load preferences from a custom folder or URL"
 4. Set the path to `~/Repos/dotfiles/iTerm/settings/`
 
-## 8. Set up scheduled sync/apply
+## 15. Set up scheduled sync/apply
 
 The install script generates launchd plists with the correct paths for the current user — works regardless of username.
 
@@ -99,7 +169,7 @@ You can also run either script manually at any time:
 ./apply.sh   # Pull and apply on secondary machine
 ```
 
-## 9. Restore from Time Machine (optional)
+## 16. Restore from Time Machine (optional)
 
 If you have a Time Machine backup, you can use Migration Assistant or manually copy:
 

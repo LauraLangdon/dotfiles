@@ -169,6 +169,101 @@ defaults write NSGlobalDomain AppleAccentColor -int 6
 # System highlight color: Pink (text selection, etc.)
 defaults write NSGlobalDomain AppleHighlightColor -string "1.000000 0.749020 0.823529 Pink"
 
+# Folder icon tint color: custom Pink
+# Values for AppleIconAppearanceTintColor: Monochrome, Multicolor, Other (custom)
+defaults write NSGlobalDomain AppleIconAppearanceTintColor -string "Other"
+defaults write NSGlobalDomain AppleIconAppearanceCustomTintColor -string "1.000000 0.475000 0.732994 0.940000"
+
+# =============================================================================
+# Accessibility
+# =============================================================================
+
+# Reduce motion (less animation in UI transitions)
+defaults write com.apple.universalaccess reduceMotion -bool true
+
+# =============================================================================
+# Stage Manager & Window Management
+# =============================================================================
+
+# Disable Stage Manager
+defaults write com.apple.WindowManager GloballyEnabled -bool false
+
+# =============================================================================
+# Trackpad Speed
+# =============================================================================
+
+# Tracking speed (0.0 = slowest, 3.0 = fastest)
+defaults write NSGlobalDomain com.apple.trackpad.scaling -float 0.6875
+
+# =============================================================================
+# Sidebar & Scroll Bars
+# =============================================================================
+
+# Sidebar icon size: 1=small, 2=medium, 3=large
+defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 2
+
+# Show scroll bars: Automatic, WhenScrolling, Always
+defaults write NSGlobalDomain AppleShowScrollBars -string "Automatic"
+
+# Click in scroll bar to jump to the clicked spot (not page up/down)
+# 0 = jump to next page, 1 = jump to spot
+defaults write NSGlobalDomain AppleScrollerPagingBehavior -int 1
+
+# =============================================================================
+# Clock / Menu Bar
+# =============================================================================
+
+# Digital clock, show day of week and AM/PM, no date
+defaults write com.apple.menuextra.clock ShowDayOfWeek -bool true
+defaults write com.apple.menuextra.clock ShowAMPM -bool true
+defaults write com.apple.menuextra.clock ShowDate -int 0
+defaults write com.apple.menuextra.clock IsAnalog -bool false
+
+# =============================================================================
+# Sound
+# =============================================================================
+
+# Alert sound
+defaults write NSGlobalDomain com.apple.sound.beep.sound -string "/System/Library/Sounds/Blow.aiff"
+
+# Disable UI sound effects (clicking, trash, etc.)
+defaults write NSGlobalDomain com.apple.sound.uiaudio.enabled -bool false
+
+# =============================================================================
+# Security
+# =============================================================================
+
+# Enable firewall
+sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate on
+
+# Login window shows username and password fields (not user list)
+sudo defaults write /Library/Preferences/com.apple.loginwindow SHOWFULLNAME -bool true
+
+# =============================================================================
+# Desktop & Dock (additional)
+# =============================================================================
+
+# Hide widgets when in Stage Manager
+defaults write com.apple.WindowManager StageManagerHideWidgets -bool true
+
+# Don't hide widgets on desktop (show them normally)
+defaults write com.apple.WindowManager StandardHideWidgets -bool false
+
+# Prefer tabs when opening documents: always, fullscreen, manual
+defaults write NSGlobalDomain AppleWindowTabbingMode -string "always"
+
+# =============================================================================
+# Keyboard Shortcuts
+# =============================================================================
+
+# Mission Control shortcut: Ctrl+M (key code 46 = M, modifier 262144 = Ctrl)
+defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 32 \
+    "<dict><key>enabled</key><true/><key>value</key><dict><key>parameters</key><array><integer>109</integer><integer>46</integer><integer>262144</integer></array><key>type</key><string>standard</string></dict></dict>"
+
+# Application Windows shortcut: Ctrl+Shift+M
+defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 34 \
+    "<dict><key>enabled</key><true/><key>value</key><dict><key>parameters</key><array><integer>109</integer><integer>46</integer><integer>393216</integer></array><key>type</key><string>standard</string></dict></dict>"
+
 # =============================================================================
 # Hot Corners — all disabled (value 1 = no action)
 #

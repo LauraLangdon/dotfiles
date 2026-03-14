@@ -44,6 +44,8 @@ cd ~/Repos/dotfiles
 
 **`zsh: command not found: brew`:** Homebrew isn't in your PATH yet. Run `eval "$(/opt/homebrew/bin/brew shellenv)"` and re-run `./bootstrap.sh`.
 
+**`unsupported value for gpg.format: ssh`:** The Xcode CLT git is too old. Run `eval "$(/opt/homebrew/bin/brew shellenv)"` to use Homebrew's git, then retry.
+
 ## How it works
 
 `bootstrap.sh` runs a series of numbered scripts in order. Each script handles one concern and is safe to re-run (idempotent).

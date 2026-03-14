@@ -30,4 +30,24 @@ symlink_safe "Vim/.vim"                         "$HOME/.vim"
 # Terminals
 symlink_safe "Warp"                             "$HOME/.warp"
 
+# VS Code custom themes (not on marketplace — cloned from GitHub)
+VSCODE_EXT="$HOME/.vscode/extensions"
+mkdir -p "$VSCODE_EXT"
+
+vscode_themes=(
+    "https://github.com/LauraLangdon/light-pinkish.git"
+    "https://github.com/LauraLangdon/hyper-owl.git"
+)
+
+for repo in "${vscode_themes[@]}"; do
+    name="$(basename "$repo" .git)"
+    if [[ -d "$VSCODE_EXT/$name" ]]; then
+        success "VS Code theme '$name' already installed"
+    else
+        info "Cloning VS Code theme '$name'..."
+        git clone "$repo" "$VSCODE_EXT/$name"
+        success "VS Code theme '$name' installed"
+    fi
+done
+
 success "Symlinks created"
