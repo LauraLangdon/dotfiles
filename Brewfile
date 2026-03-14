@@ -65,6 +65,7 @@ brew "midnightideas/extras/git-credential-1password" # 1Password git credential 
 
 cask "1password-cli"            # 1Password CLI (op)
 cask "git-credential-manager"   # Git Credential Manager
+cask "raycast"                  # Spotlight replacement with extensions
 
 # =============================================================================
 # Fonts
