@@ -3,7 +3,7 @@
 #
 # Anki doesn't have a CLI for add-on installation. This script:
 # 1. Prints the add-on IDs to paste into Tools > Add-ons > Get Add-ons
-# 2. Restores saved configs after add-ons are installed
+# 2. Restores saved configs (stored in meta.json) after add-ons are installed
 
 [[ -z "${DOTFILES:-}" ]] && DOTFILES="$(cd "$(dirname "$0")/.." && pwd)"
 source "$DOTFILES/scripts/utils.sh"
@@ -32,14 +32,25 @@ echo "  ${ids[*]}"
 echo ""
 
 # Restore configs for any add-ons already installed
+# Anki stores user config inside meta.json under the "config" key
 if [[ -d "$ADDON_DIR" && -d "$ADDON_CONFIGS" ]]; then
     restored=0
     for config_dir in "$ADDON_CONFIGS"/*/; do
         [[ -d "$config_dir" ]] || continue
         id="$(basename "$config_dir")"
-        if [[ -d "$ADDON_DIR/$id" && -f "$config_dir/config.json" ]]; then
-            cp "$config_dir/config.json" "$ADDON_DIR/$id/config.json"
-            ((restored++))
+        if [[ -d "$ADDON_DIR/$id" && -f "$config_dir/meta.json" && -f "$ADDON_DIR/$id/meta.json" ]]; then
+            # Merge saved config into existing meta.json (preserve mod, name, etc.)
+            python3 -c "
+import json, sys
+live = json.load(open('$ADDON_DIR/$id/meta.json'))
+saved = json.load(open('$config_dir/meta.json'))
+if 'config' in saved:
+    live['config'] = saved['config']
+    json.dump(live, open('$ADDON_DIR/$id/meta.json', 'w'), indent=2)
+    print('ok')
+else:
+    print('skip')
+" | grep -q 'ok' && ((restored++))
         fi
     done
     if ((restored > 0)); then

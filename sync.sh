@@ -189,6 +189,62 @@ if [[ -f "$ZEN_USERJS" && -d "$ZEN_PROFILES" ]]; then
 fi
 
 # =============================================================================
+# Anki add-ons
+# =============================================================================
+
+ADDON_LIST="$DOTFILES/Anki/addons.txt"
+ADDON_CONFIGS="$DOTFILES/Anki/addon-configs"
+ADDON_DIR="$HOME/Library/Application Support/Anki2/addons21"
+
+if [[ -d "$ADDON_DIR" && -f "$ADDON_LIST" ]]; then
+    info "Checking Anki add-ons..."
+
+    # Check for new or removed add-ons
+    repo_ids=$(grep -v '^#' "$ADDON_LIST" | sed 's/#.*//' | tr -d '[:space:]' | grep -v '^$' | sort)
+    installed_ids=$(find "$ADDON_DIR" -maxdepth 1 -type d ! -name addons21 ! -name __pycache__ -exec basename {} \; | sort)
+
+    new_addons=$(comm -13 <(echo "$repo_ids") <(echo "$installed_ids"))
+    removed_addons=$(comm -23 <(echo "$repo_ids") <(echo "$installed_ids"))
+
+    if [[ -n "$new_addons" ]]; then
+        info "Add-ons installed but not in addons.txt:"
+        echo "$new_addons" | while read -r id; do info "  + $id"; done
+        changes_found=true
+    fi
+
+    if [[ -n "$removed_addons" ]]; then
+        info "Add-ons in addons.txt but not installed:"
+        echo "$removed_addons" | while read -r id; do info "  - $id"; done
+        changes_found=true
+    fi
+
+    # Check for config changes (user config is in meta.json under "config" key)
+    for dir in "$ADDON_DIR"/*/; do
+        id="$(basename "$dir")"
+        [[ "$id" == "__pycache__" ]] && continue
+        [[ -f "$dir/meta.json" ]] || continue
+        has_config=$(python3 -c "import json; print('yes' if 'config' in json.load(open('$dir/meta.json')) else 'no')" 2>/dev/null)
+        [[ "$has_config" == "yes" ]] || continue
+        if [[ -f "$ADDON_CONFIGS/$id/meta.json" ]]; then
+            # Compare just the config key, not mod times etc.
+            live_config=$(python3 -c "import json; print(json.dumps(json.load(open('$dir/meta.json')).get('config',{}), sort_keys=True))" 2>/dev/null)
+            saved_config=$(python3 -c "import json; print(json.dumps(json.load(open('$ADDON_CONFIGS/$id/meta.json')).get('config',{}), sort_keys=True))" 2>/dev/null)
+            if [[ "$live_config" != "$saved_config" ]]; then
+                info "Anki add-on $id config has changed — run ./scripts/anki-sync.sh to update"
+                changes_found=true
+            fi
+        else
+            info "Anki add-on $id has config but not backed up"
+            changes_found=true
+        fi
+    done
+
+    if ! $changes_found; then
+        $QUIET || success "Anki add-ons match"
+    fi
+fi
+
+# =============================================================================
 # Summary
 # =============================================================================
 
