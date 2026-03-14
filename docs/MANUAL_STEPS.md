@@ -132,18 +132,22 @@ Per-app notification settings can't be reliably automated. Review System Setting
 - **Internet Accounts**: System Settings > Internet Accounts > sign in to all accounts (Google, Exchange, etc.)
 - **Apple Wallet**: System Settings > Wallet & Apple Pay > add cards
 
-## 14. Passwords & autofill
+## 14. Obsidian vault
+
+Open Obsidian and select "Open folder as vault", then point it to `~/Obsidian-parent/Brain` (available after iCloud syncs).
+
+## 15. Passwords & autofill
 
 - System Settings > Passwords > Password Options > turn off AutoFill Passwords and Passkeys
 
-## 15. Terminal font
+## 16. Terminal font
 
 Set your terminal's font to a Nerd Font so Starship prompt icons render correctly:
 
 - **Warp**: Settings > Appearance > Font → "AnonymicePro Nerd Font" or "FantasqueSansM Nerd Font"
 - **iTerm2**: Profiles > Text > Font → same
 
-## 16. iTerm2 settings
+## 17. iTerm2 settings
 
 If using iTerm2, point it to the dotfiles settings:
 
@@ -152,7 +156,7 @@ If using iTerm2, point it to the dotfiles settings:
 3. Check "Load preferences from a custom folder or URL"
 4. Set the path to `~/Repos/dotfiles/iTerm/settings/`
 
-## 17. Set up scheduled sync/apply
+## 18. Set up scheduled sync/apply
 
 The install script generates launchd plists with the correct paths for the current user — works regardless of username.
 
@@ -179,7 +183,7 @@ You can also run either script manually at any time:
 ./apply.sh   # Pull and apply on secondary machine
 ```
 
-## 18. Restore from Time Machine (optional)
+## 19. Restore from Time Machine (optional)
 
 If you have a Time Machine backup, you can use Migration Assistant or manually copy:
 

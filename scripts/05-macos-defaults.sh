@@ -312,11 +312,16 @@ defaults write com.apple.dock wvous-br-corner -int 1   # Bottom-right
 # Warp stores its settings in defaults (dev.warp.Warp-Stable).
 # Themes, keybindings, and launch configs are symlinked via ~/.warp.
 
+# Accessibility
+defaults write dev.warp.Warp-Stable AccessibilityVerbosity -string '"VERBOSE"'
+
 # Font
-defaults write dev.warp.Warp-Stable FontName -string "PTMono Nerd Font"
+# Note: Warp stores string values with literal quotes inside the string.
+# Use single-quote wrapping with inner escaped quotes: '"value"'
+defaults write dev.warp.Warp-Stable FontName -string '"PTMono Nerd Font"'
 defaults write dev.warp.Warp-Stable FontSize -float 13.0
 defaults write dev.warp.Warp-Stable LineHeightRatio -float 1.2
-defaults write dev.warp.Warp-Stable UseThinStrokes -string "OnHighDpiDisplays"
+defaults write dev.warp.Warp-Stable UseThinStrokes -string '"OnHighDpiDisplays"'
 
 # Theme — uses custom theme from ~/.warp/themes/ (symlinked from dotfiles)
 defaults write dev.warp.Warp-Stable Theme -string '{"Custom":{"name":"Light-pinkish","path":"'"$HOME"'/.warp/themes/light-pinkish.yaml"}}'
@@ -325,8 +330,8 @@ defaults write dev.warp.Warp-Stable SystemTheme -bool true
 # Editor
 defaults write dev.warp.Warp-Stable VimModeEnabled -bool true
 defaults write dev.warp.Warp-Stable VimUnnamedSystemClipboard -bool true
-defaults write dev.warp.Warp-Stable CursorBlink -string "Enabled"
-defaults write dev.warp.Warp-Stable InputMode -string "PinnedToBottom"
+defaults write dev.warp.Warp-Stable CursorBlink -string '"Enabled"'
+defaults write dev.warp.Warp-Stable InputMode -string '"PinnedToBottom"'
 
 # Behavior
 defaults write dev.warp.Warp-Stable HonorPS1 -bool true
@@ -342,10 +347,10 @@ defaults write dev.warp.Warp-Stable FocusPaneOnHover -bool true
 # Display
 defaults write dev.warp.Warp-Stable AltScreenPadding -string '{"Custom":{"uniform_padding":0.0}}'
 defaults write dev.warp.Warp-Stable OpenWindowsAtCustomSize -bool false
-defaults write dev.warp.Warp-Stable EnforceMinimumContrast -string "Never"
-defaults write dev.warp.Warp-Stable Spacing -string "Normal"
+defaults write dev.warp.Warp-Stable EnforceMinimumContrast -string '"Never"'
+defaults write dev.warp.Warp-Stable Spacing -string '"Normal"'
 defaults write dev.warp.Warp-Stable ZoomLevel -int 100
-defaults write dev.warp.Warp-Stable AppIcon -string "Sticker"
+defaults write dev.warp.Warp-Stable AppIcon -string '"Sticker"'
 
 # =============================================================================
 # Wallpaper

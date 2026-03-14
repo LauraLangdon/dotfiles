@@ -147,6 +147,48 @@ else
 fi
 
 # =============================================================================
+# Zen Browser
+# =============================================================================
+
+ZEN_USERJS="$DOTFILES/Zen/user.js"
+ZEN_PROFILES="$HOME/Library/Application Support/Zen/Profiles"
+
+if [[ -f "$ZEN_USERJS" && -d "$ZEN_PROFILES" ]]; then
+    info "Checking Zen Browser preferences..."
+
+    # Find the active profile (most recently modified prefs.js)
+    zen_profile=""
+    for profile in "$ZEN_PROFILES"/*/; do
+        if [[ -f "$profile/prefs.js" ]]; then
+            zen_profile="$profile"
+        fi
+    done
+
+    if [[ -n "$zen_profile" ]]; then
+        # Extract the keys we care about from user.js
+        zen_keys=$(grep '^user_pref(' "$ZEN_USERJS" | sed 's/user_pref("\([^"]*\)".*/\1/')
+
+        zen_drift=false
+        while IFS= read -r key; do
+            repo_val=$(grep "\"$key\"" "$ZEN_USERJS" | sed 's/.*,\s*//' | sed 's/);\s*$//')
+            live_val=$(grep "\"$key\"" "$zen_profile/prefs.js" | sed 's/.*,\s*//' | sed 's/);\s*$//')
+
+            if [[ -n "$live_val" && "$repo_val" != "$live_val" ]]; then
+                warn "Zen pref changed: $key"
+                warn "  repo: $repo_val"
+                warn "  live: $live_val"
+                zen_drift=true
+                changes_found=true
+            fi
+        done <<< "$zen_keys"
+
+        if ! $zen_drift; then
+            $QUIET || success "Zen Browser preferences match"
+        fi
+    fi
+fi
+
+# =============================================================================
 # Summary
 # =============================================================================
 

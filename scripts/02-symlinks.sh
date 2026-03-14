@@ -50,4 +50,18 @@ for repo in "${vscode_themes[@]}"; do
     fi
 done
 
+# Zen Browser user.js (copy into active profile)
+ZEN_PROFILES="$HOME/Library/Application Support/Zen/Profiles"
+ZEN_USERJS="$DOTFILES/Zen/user.js"
+if [[ -f "$ZEN_USERJS" && -d "$ZEN_PROFILES" ]]; then
+    for profile in "$ZEN_PROFILES"/*/; do
+        if [[ -f "$profile/prefs.js" ]]; then
+            cp "$ZEN_USERJS" "$profile/user.js"
+            success "Zen user.js copied to $(basename "$profile")"
+        fi
+    done
+elif [[ -f "$ZEN_USERJS" ]]; then
+    info "Zen not installed yet — user.js will be copied on next apply"
+fi
+
 success "Symlinks created"
