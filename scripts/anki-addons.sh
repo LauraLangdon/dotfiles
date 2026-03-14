@@ -1,17 +1,15 @@
 #!/usr/bin/env bash
-# anki-addons.sh — Install Anki add-ons from addons.txt
+# anki-addons.sh — Install Anki add-ons and restore their configs.
 #
-# Anki doesn't have a CLI for add-on installation, but it watches
-# the addons21 directory. This script creates placeholder directories
-# so Anki knows to download them on next launch.
-#
-# After running this script, open Anki — it will detect the new
-# add-on IDs and download them automatically.
+# Anki doesn't have a CLI for add-on installation. This script:
+# 1. Prints the add-on IDs to paste into Tools > Add-ons > Get Add-ons
+# 2. Restores saved configs after add-ons are installed
 
 [[ -z "${DOTFILES:-}" ]] && DOTFILES="$(cd "$(dirname "$0")/.." && pwd)"
 source "$DOTFILES/scripts/utils.sh"
 
 ADDON_LIST="$DOTFILES/Anki/addons.txt"
+ADDON_CONFIGS="$DOTFILES/Anki/addon-configs"
 ADDON_DIR="$HOME/Library/Application Support/Anki2/addons21"
 
 if [[ ! -f "$ADDON_LIST" ]]; then
@@ -19,33 +17,34 @@ if [[ ! -f "$ADDON_LIST" ]]; then
     exit 1
 fi
 
-# Find the Anki profile directory — if addons21 doesn't exist yet,
-# Anki hasn't been run. Tell the user to open Anki first.
-if [[ ! -d "$ADDON_DIR" ]]; then
-    warn "Anki add-ons directory not found — open Anki once first, then re-run this script"
-    exit 0
-fi
-
-installed=0
-skipped=0
-
+# Collect IDs from addons.txt
+ids=()
 while IFS= read -r line; do
-    # Strip comments and whitespace
     id="$(echo "$line" | sed 's/#.*//' | tr -d '[:space:]')"
     [[ -z "$id" ]] && continue
-
-    if [[ -d "$ADDON_DIR/$id" ]]; then
-        ((skipped++))
-    else
-        mkdir -p "$ADDON_DIR/$id"
-        # Create minimal meta.json so Anki knows to update it
-        echo '{"mod": 0, "conflicts": []}' > "$ADDON_DIR/$id/meta.json"
-        ((installed++))
-    fi
+    ids+=("$id")
 done < "$ADDON_LIST"
 
-if ((installed > 0)); then
-    success "$installed add-on(s) queued for download — open Anki to complete installation"
+# Print IDs for manual install
+info "To install Anki add-ons: Tools > Add-ons > Get Add-ons, paste:"
+echo ""
+echo "  ${ids[*]}"
+echo ""
+
+# Restore configs for any add-ons already installed
+if [[ -d "$ADDON_DIR" && -d "$ADDON_CONFIGS" ]]; then
+    restored=0
+    for config_dir in "$ADDON_CONFIGS"/*/; do
+        [[ -d "$config_dir" ]] || continue
+        id="$(basename "$config_dir")"
+        if [[ -d "$ADDON_DIR/$id" && -f "$config_dir/config.json" ]]; then
+            cp "$config_dir/config.json" "$ADDON_DIR/$id/config.json"
+            ((restored++))
+        fi
+    done
+    if ((restored > 0)); then
+        success "$restored add-on config(s) restored — restart Anki to apply"
+    fi
 else
-    success "All $skipped add-on(s) already installed"
+    info "Anki not set up yet — run this script again after installing add-ons"
 fi
