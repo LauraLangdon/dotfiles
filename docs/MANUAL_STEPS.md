@@ -138,26 +138,25 @@ macOS doesn't reliably allow setting default apps via the command line. Set thes
 
 Add these apps to System Settings > General > Login Items > Open at Login:
 
-- Stay
-- CleanShot X
-- Things
-- Mosaic
-- Raycast
-- Mission Control Plus
-- Zen Browser
-- Obsidian
-- Slack
-- Microsoft Outlook
-- Vimcal
-- Google Drive
+**Setapp apps** (Bartender, CleanShot X, ClearVPN, In Your Face, and Mosaic have their own "Launch at Login" setting, restored by Mackup):
+
+- Mission Control Plus (no in-app preference — must add here)
+
+**Other apps:**
+
 - Discord
-- Bartender
-- In Your Face
-- noTunes
-- Warp
+- Google Drive
 - Messages
-- ClearVPN
+- Microsoft Outlook
+- noTunes
+- Obsidian
+- Raycast
 - Signal
+- Slack
+- Things
+- Vimcal
+- Warp
+- Zen Browser
 
 Also ensure these apps are allowed to run in the background (same Settings page, under "Allow in the Background"):
 
