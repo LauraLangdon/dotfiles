@@ -53,7 +53,7 @@ for font in "$DOTFILES"/fonts/*.ttf "$DOTFILES"/fonts/*.otf; do
     fi
 done
 
-# VS Code custom themes (not on marketplace — cloned from GitHub)
+# VS Code custom themes (not on marketplace — built from GitHub repos)
 VSCODE_EXT="$HOME/.vscode/extensions"
 mkdir -p "$VSCODE_EXT"
 
@@ -64,11 +64,14 @@ vscode_themes=(
 
 for repo in "${vscode_themes[@]}"; do
     name="$(basename "$repo" .git)"
-    if [[ -d "$VSCODE_EXT/$name" ]]; then
+    if code --list-extensions 2>/dev/null | grep -qi "$name"; then
         success "VS Code theme '$name' already installed"
     else
-        info "Cloning VS Code theme '$name'..."
-        git clone "$repo" "$VSCODE_EXT/$name"
+        info "Installing VS Code theme '$name'..."
+        tmpdir="$(mktemp -d)"
+        git clone "$repo" "$tmpdir/$name"
+        (cd "$tmpdir/$name" && npx --yes @vscode/vsce package -o "$tmpdir/$name.vsix" && code --install-extension "$tmpdir/$name.vsix" --force)
+        rm -rf "$tmpdir"
         success "VS Code theme '$name' installed"
     fi
 done
