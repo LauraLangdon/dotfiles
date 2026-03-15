@@ -46,6 +46,13 @@ The bootstrap installed NVM but not Node.js itself. Install the latest LTS versi
 nvm install --lts
 ```
 
+Then install Claude Code and re-run the post-install step it skipped:
+
+```bash
+npm install -g @anthropic-ai/claude-code
+./scripts/06-post-install.sh
+```
+
 ## 5. VS Code settings sync
 
 1. Open VS Code

@@ -74,6 +74,20 @@ for font_pattern in "AnonymiceProNerdFont" "FantasqueSansMNerdFont"; do
     fi
 done
 
+# --- Claude Code ---
+
+if command_exists npm; then
+    if command_exists claude; then
+        success "Claude Code already installed"
+    else
+        info "Installing Claude Code..."
+        npm install -g @anthropic-ai/claude-code
+        success "Claude Code installed"
+    fi
+else
+    info "npm not found — install Node.js first (nvm install --lts), then run: npm install -g @anthropic-ai/claude-code"
+fi
+
 # --- Anki add-ons ---
 
 source "$DOTFILES/scripts/anki-addons.sh"

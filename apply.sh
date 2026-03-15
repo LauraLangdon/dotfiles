@@ -70,6 +70,22 @@ else
 fi
 
 # =============================================================================
+# Claude Code
+# =============================================================================
+
+if command_exists npm; then
+    if command_exists claude; then
+        info "Updating Claude Code..."
+        npm update -g @anthropic-ai/claude-code
+        success "Claude Code up to date"
+    else
+        info "Installing Claude Code..."
+        npm install -g @anthropic-ai/claude-code
+        success "Claude Code installed"
+    fi
+fi
+
+# =============================================================================
 # Verify symlinks
 # =============================================================================
 
