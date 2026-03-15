@@ -36,6 +36,8 @@ link_targets=(
     "$HOME/.vimrc"
     "$HOME/.vim"
     "$HOME/.warp"
+    "$HOME/.mackup.cfg"
+    "$HOME/.mackup"
 )
 link_sources=(
     "$DOTFILES/Zsh/.zshrc"
@@ -47,6 +49,8 @@ link_sources=(
     "$DOTFILES/Vim/.vimrc"
     "$DOTFILES/Vim/.vim"
     "$DOTFILES/Warp"
+    "$DOTFILES/Mackup/.mackup.cfg"
+    "$DOTFILES/Mackup/.mackup"
 )
 
 link_ok=true

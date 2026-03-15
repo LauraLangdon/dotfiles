@@ -101,7 +101,29 @@ Sign into [Setapp](https://setapp.com) and install the following apps from the c
 - Sip
 - Supercharge
 
-Mackup will restore their settings automatically once the apps are installed.
+Mackup will restore their settings automatically once the apps are installed (except In Your Face — see below).
+
+### In Your Face custom theme
+
+In Your Face is sandboxed, so Mackup can't sync its settings. Recreate the "Monterrey" theme manually:
+
+1. Open In Your Face > Appearance
+2. Click **+** to create a new theme
+3. Set **Name** to `Monterrey` and **Author** to `Me`
+4. Configure:
+
+| Setting | Value |
+|---------|-------|
+| **Alert text color** | `#d1a6c4` |
+| **Alert Background — Blur mode** | none |
+| **Alert Background — Color** | `#35168c` (enabled) |
+| **Alert Background — Opacity** | 95% |
+| **Action Buttons — Foreground** | `#d1a6c4` |
+| **Action Buttons — Background** | disabled |
+| **Action Buttons — Opacity** | 0% |
+| **Primary Action Button — Foreground** | `#ffffff` |
+| **Primary Action Button — Background** | `#b73daa` (enabled) |
+| **Primary Action Button — Opacity** | 100% |
 
 ## 8. Mona 2 settings
 

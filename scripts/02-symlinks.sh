@@ -25,6 +25,7 @@ symlink_safe "SSH/config"                        "$HOME/.ssh/config"
 
 # Mackup
 symlink_safe "Mackup/.mackup.cfg"               "$HOME/.mackup.cfg"
+symlink_safe "Mackup/.mackup"                   "$HOME/.mackup"
 
 # Git
 symlink_safe "Git/.gitconfig"                   "$HOME/.gitconfig"
