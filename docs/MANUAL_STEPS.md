@@ -226,6 +226,11 @@ Per-app notification settings can't be reliably automated. Review System Setting
 
 Open Obsidian and select "Open folder as vault", then point it to `~/Obsidian-parent/Brain` (available after iCloud syncs).
 
+Obsidian Sync syncs vault content but **not settings by default**. To sync settings, plugins, and themes:
+
+1. Settings > Sync (under Core plugins)
+2. Toggle on: Vault configuration, Installed community plugins, Active core plugins, Appearance
+
 ## 19. Passwords & autofill
 
 1Password is used for all password management. Disable macOS built-in autofill so it doesn't compete:
