@@ -150,10 +150,12 @@ fi
 # Zen Browser
 # =============================================================================
 
-ZEN_USERJS="$DOTFILES/Zen/user.js"
-ZEN_PROFILES="$HOME/Library/Application Support/Zen/Profiles"
+ZEN_DIR="$DOTFILES/Zen"
+ZEN_PROFILES="$HOME/Library/Application Support/zen/Profiles"
+ZEN_USERJS="$ZEN_DIR/user.js"
+ZEN_EXTRA_FILES=(containers.json zen-themes.json zen-keyboard-shortcuts.json)
 
-if [[ -f "$ZEN_USERJS" && -d "$ZEN_PROFILES" ]]; then
+if [[ -d "$ZEN_DIR" && -d "$ZEN_PROFILES" ]]; then
     info "Checking Zen Browser preferences..."
 
     # Find the active profile (most recently modified prefs.js)
@@ -165,22 +167,40 @@ if [[ -f "$ZEN_USERJS" && -d "$ZEN_PROFILES" ]]; then
     done
 
     if [[ -n "$zen_profile" ]]; then
-        # Extract the keys we care about from user.js
-        zen_keys=$(grep '^user_pref(' "$ZEN_USERJS" | sed 's/user_pref("\([^"]*\)".*/\1/')
-
         zen_drift=false
-        while IFS= read -r key; do
-            repo_val=$(grep "\"$key\"" "$ZEN_USERJS" | sed 's/.*,\s*//' | sed 's/);\s*$//')
-            live_val=$(grep "\"$key\"" "$zen_profile/prefs.js" | sed 's/.*,\s*//' | sed 's/);\s*$//')
 
-            if [[ -n "$live_val" && "$repo_val" != "$live_val" ]]; then
-                warn "Zen pref changed: $key"
-                warn "  repo: $repo_val"
-                warn "  live: $live_val"
+        # Check user.js prefs against live prefs.js
+        if [[ -f "$ZEN_USERJS" ]]; then
+            zen_keys=$(grep '^user_pref(' "$ZEN_USERJS" | sed 's/user_pref("\([^"]*\)".*/\1/')
+
+            while IFS= read -r key; do
+                repo_val=$(grep "\"$key\"" "$ZEN_USERJS" | sed 's/.*,\s*//' | sed 's/);\s*$//')
+                live_val=$(grep "\"$key\"" "$zen_profile/prefs.js" | sed 's/.*,\s*//' | sed 's/);\s*$//')
+
+                if [[ -n "$live_val" && "$repo_val" != "$live_val" ]]; then
+                    warn "Zen pref changed: $key"
+                    warn "  repo: $repo_val"
+                    warn "  live: $live_val"
+                    zen_drift=true
+                    changes_found=true
+                fi
+            done <<< "$zen_keys"
+        fi
+
+        # Check extra profile files for drift
+        for f in "${ZEN_EXTRA_FILES[@]}"; do
+            if [[ -f "$zen_profile/$f" && -f "$ZEN_DIR/$f" ]]; then
+                if ! diff -q "$ZEN_DIR/$f" "$zen_profile/$f" &>/dev/null; then
+                    warn "Zen $f has changed — run: cp \"$zen_profile/$f\" \"$ZEN_DIR/$f\""
+                    zen_drift=true
+                    changes_found=true
+                fi
+            elif [[ -f "$zen_profile/$f" && ! -f "$ZEN_DIR/$f" ]]; then
+                warn "Zen $f exists in profile but not in repo"
                 zen_drift=true
                 changes_found=true
             fi
-        done <<< "$zen_keys"
+        done
 
         if ! $zen_drift; then
             $QUIET || success "Zen Browser preferences match"
