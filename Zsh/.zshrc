@@ -68,11 +68,18 @@ alias gp='git checkout -'
 alias ls='eza -la'
 eval "$(zoxide init zsh)"
 
-export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/bin:$PATH"
 
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
 eval "$(starship init zsh)"
+
+# MCP credentials via 1Password local .env file (no secrets on disk).
+# claude-env also runs launchctl setenv so Dock-launched apps see them.
+set -a
+source ~/.config/claude-secrets.env 2>/dev/null
+set +a
+alias claude-env="source ~/bin/set-claude-env.sh"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

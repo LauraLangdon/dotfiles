@@ -39,6 +39,16 @@ symlink_safe "Vim/.vim"                         "$HOME/.vim"
 # Terminals
 symlink_safe "Warp"                             "$HOME/.warp"
 
+# Helper scripts
+mkdir -p "$HOME/bin"
+for script in "$DOTFILES"/bin/*.sh; do
+    [[ -f "$script" ]] || continue
+    name="$(basename "$script")"
+    cp "$script" "$HOME/bin/$name"
+    chmod +x "$HOME/bin/$name"
+    success "Copied $name to ~/bin"
+done
+
 # Custom fonts (not available via Homebrew)
 FONT_DIR="$HOME/Library/Fonts"
 mkdir -p "$FONT_DIR"
