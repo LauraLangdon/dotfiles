@@ -1,26 +1,25 @@
-accent:
-  left: '#DA0B99' # Accent color for UI elements
+accent: 
+  left: '#f48bb5' # Accent color for UI elements
   right: '#dfcce5'
 background: '#ffffff' # Terminal background color
-# Comments color (reference only, not a Warp field): '#906A85'
 details: lighter # Whether the theme is lighter or darker.
 foreground: '#660066' # The foreground color.
 terminal_colors: # Ansi escape colors.
   bright:
     black: '#000000'
-    blue: '#765afe'
-    cyan: '#007a85'
-    green: '#008a00'
+    blue: '#666bff'
+    cyan: '#00a5b3'
+    green: '#00aa64'
     magenta: '#cc00ff'
-    red: '#d61ab4'
+    red: '#e916a6'
     white: '#ffb3c6'
     yellow: '#ffb3c6'
   normal:
     black: '#000000'
-    blue: '#765afe'
-    cyan: '#007a85'
-    green: '#008a00'
+    blue: '#666bff'
+    cyan: '#00a5b3'
+    green: '#00aa64'
     magenta: '#960096'
-    red: '#d61ab4'
+    red: '#e916a6'
     white: '#ffb3c6'
-    yellow: '#d04a00'
+    yellow: '#ff9900'
