@@ -4,3 +4,7 @@
 *.swp
 
 ../Zsh/Oh-My-Zsh/cache/
+
+# Claude Code memsearch per-repo cache
+.memsearch/
+.claude/
